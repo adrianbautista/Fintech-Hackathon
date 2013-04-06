@@ -27,6 +27,13 @@ class ClubsController < ApplicationController
 
     @club = Club.find(params[:id])
     @deposits = @club.deposits
+
+    @total_invested = 0
+
+    @deposits.each do |d|
+      @total_invested += d.amount
+    end
+
     @members = @deposits.collect(&:user)
   end
 end
