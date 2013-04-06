@@ -10,8 +10,10 @@
 #  date       :date
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  request_id :integer
 #
 
 class Transaction < ActiveRecord::Base
-  # attr_accessible :title, :body
+  belongs_to :request
+  belongs_to :club
 end
