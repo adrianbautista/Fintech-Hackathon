@@ -1,1 +1,10 @@
 <h2>New Request</h2>
+
+<%= form_for @request do |f| %>
+  <%= f.text_field :symbol %>
+  <%= f.number_field :quantity %>
+  <%= f.number_field :price %>
+  <%= f.text_area :message %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.submit  %>
+<% end %>
