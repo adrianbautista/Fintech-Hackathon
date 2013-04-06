@@ -2,14 +2,24 @@ development:
   adapter: postgresql
   encoding: unicode
   database: sri-rails_development
+  host: localhost
   pool: 5
   username: postgres
+<<<<<<< HEAD
   password: example
+=======
+  password: Orguss02!
+>>>>>>> 4581a2c02d47be07894628aeb3ad6a2969cf1216
 
 test:
   adapter: postgresql
   encoding: unicode
   database: sri-rails_test
+  host: localhost
   pool: 5
   username: postgres
+<<<<<<< HEAD
   password: example
+=======
+  password: Orguss02!
+>>>>>>> 4581a2c02d47be07894628aeb3ad6a2969cf1216

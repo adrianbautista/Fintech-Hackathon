@@ -1,3 +1,5 @@
+== WORK OFF/BRANCH OFF FROM DEVELOP BRANCH
+
 == Setup / Configuration
 
 1. git clone the repo from the command line:
@@ -11,7 +13,7 @@
 4. start server
        rails s
 
-4. lets crush it! 加油!
+5. lets crush it! 加油!
 
 == Resources
 
@@ -26,6 +28,19 @@
 * Biz Vizz API: http://bizvizz.com/api
 * Estimize API Doc: https://s3.amazonaws.com/com.estimize.public/EstimizeAPI.pdf
 * Alpha Data (list of open source APIs): http://alpha.data.gov/
+
+== Using ENV variables for API keys
+
+1. For each API key we use, add a line to your .bash_profile file
+
+2. Type subl ~.bash_profile to open the file
+
+3. Add lines like so: 
+         "export FT_BIZVIZ=thebizvizzkey"
+         "export FT_SL=theSLkey"
+
+* Just replace the string after the equals sign with the key in the google doc.
+* Make sure you restart your terminal after.
 
 
 
