@@ -4,7 +4,7 @@
   <%= f.label :name %>
   <%= f.text_field :name %>
   <%= fields_for(@deposit) do |d| %>
-    <%= d.label :amount %>
+    <%= d.label :amount, "Initial deposit" %>
     <%= d.number_field :amount %>
   <% end %>
   <%= f.submit %>
