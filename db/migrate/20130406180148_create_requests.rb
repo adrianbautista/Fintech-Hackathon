@@ -7,7 +7,6 @@ class CreateRequests < ActiveRecord::Migration
       t.string :symbol
       t.integer :user_id
       t.integer :club_id
-
       t.timestamps
     end
   end
