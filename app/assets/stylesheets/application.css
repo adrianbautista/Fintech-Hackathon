@@ -12,3 +12,20 @@
  *= require foundation_and_overrides
  *= require build
  */
+
+.club_invested{
+  width: 50%;
+  float: left;
+  padding: 10px;
+}
+
+.club_value{
+  width: 50%;
+  float: left;
+  padding: 10px;
+}
+
+
+.clearfix{
+  clear: both;
+}
