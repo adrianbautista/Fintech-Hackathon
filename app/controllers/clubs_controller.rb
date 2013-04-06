@@ -24,6 +24,9 @@ class ClubsController < ApplicationController
   end
 
   def show
+
     @club = Club.find(params[:id])
+    @deposits = @club.deposits
+    @members = @deposits.collect(&:user)
   end
 end

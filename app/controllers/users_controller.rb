@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def show
-    @clubs = Club.all
+    @clubs = Club.order("created_at DESC")
   end
 
 end

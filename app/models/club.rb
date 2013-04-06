@@ -13,4 +13,6 @@ class Club < ActiveRecord::Base
   has_many :users, :through => :deposits
   has_many :transactions
   has_many :requests
+
+
 end
