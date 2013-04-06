@@ -1,0 +1,28 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: sri-rails_development
+  host: localhost
+  pool: 5
+  username: YOUR NAME
+  password: YOUR PASS
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: sri-rails_test
+  host: localhost
+  pool: 5
+  username: YOUR NAME
+  password: YOUR PASS 
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  reconnect: false
+  pool: 5
+  database: <%=ENV['OPENSHIFT_APP_NAME']%>
+  username: <%=ENV['OPENSHIFT_POSTGRESQL_DB_USERNAME']%>
+  password: <%=ENV['OPENSHIFT_POSTGRESQL_DB_PASSWORD']%>
+  host:   <%=ENV['OPENSHIFT_POSTGRESQL_DB_HOST']%>
+  port:   <%=ENV['OPENSHIFT_POSTGRESQL_DB_PORT']%>

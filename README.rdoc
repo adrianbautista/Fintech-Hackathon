@@ -1,0 +1,46 @@
+== WORK OFF/BRANCH OFF FROM DEVELOP BRANCH
+
+== Setup / Configuration
+
+1. git clone the repo from the command line:
+       git clone git@github.com:adrianbautista/Fintech-Hackathon.git
+
+2. if asked about an .rvmrc file, say yes, then run bundle
+       bundle install
+
+3. duplicate config/database.yml.example and rename it config/database.yml, put database information for your local machine
+
+4. start server
+       rails s
+
+5. lets crush it! 加油!
+
+== Resources
+
+* Foundation: http://foundation.zurb.com/docs/
+* Ruby on Rails Guide: http://guides.rubyonrails.org/
+* SASS tutorial: http://sass-lang.com/tutorial.html
+* Devise (for user models, login, views, controllers): https://github.com/plataformatec/devise
+* Farady (for interacting with RESTful APIs): https://github.com/lostisland/faraday | http://www.intridea.com/blog/2012/3/12/faraday-one-http-client-to-rule-them-all
+
+== APIs
+
+* Biz Vizz API: http://bizvizz.com/api
+* Estimize API Doc: https://s3.amazonaws.com/com.estimize.public/EstimizeAPI.pdf
+* Alpha Data (list of open source APIs): http://alpha.data.gov/
+
+== Using ENV variables for API keys
+
+1. For each API key we use, add a line to your .bash_profile file
+
+2. Type subl ~.bash_profile to open the file
+
+3. Add lines like so: 
+         "export FT_BIZVIZ=thebizvizzkey"
+         "export FT_SL=theSLkey"
+
+* Just replace the string after the equals sign with the key in the google doc.
+* Make sure you restart your terminal after.
+
+
+
