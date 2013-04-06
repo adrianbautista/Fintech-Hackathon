@@ -2,14 +2,16 @@ development:
   adapter: postgresql
   encoding: unicode
   database: sri-rails_development
+  host: localhost
   pool: 5
-  username: YOUR USERNAME HERE
-  password: YOUR PASSWORD HERE
+  username: postgres
+  password: Orguss02!
 
 test:
   adapter: postgresql
   encoding: unicode
   database: sri-rails_test
+  host: localhost
   pool: 5
-  username: YOUR USERNAME HERE
-  password: YOUR PASSWORD HERE
+  username: postgres
+  password: Orguss02!
