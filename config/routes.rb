@@ -11,4 +11,6 @@ SriRails::Application.routes.draw do
   resources :transactions
   resources :votes
 
+  get '/clubs/:id/join' => 'clubs#join', as: :join_club
+
 end
