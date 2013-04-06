@@ -12,25 +12,91 @@
 
   	<!-- Set the viewport width to device width for mobile -->
   	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/foundation.css">
 
-  	<title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+  	<title><%= content_for?(:title) ? yield(:title) : "Fund with Friends" %></title>
 
   	<%= stylesheet_link_tag    "application" %>
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
+    <script src="js/vendor/custom.modernizr.js"></script>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
-    <% if !current_user %>
-      <%= link_to "sign in with facebook", user_omniauth_authorize_path(:facebook) %>
-    <% end %>
 
     <!-- from devise -->
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <%= yield %>
 
-    
+    <div class="row">
+      <div class="large-12 columns">
+        <!-- Navigation -->
+        <nav class="top-bar">
+          <ul class="title-area">
+            <!-- Title Area -->
+            <li class="name">
+              <h1><a href="#">Fund with Friends</a></h1>
+            </li>
+            <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+          </ul>
+          <section class="top-bar-section">
+            <ul class="left">
+              <!-- MENU -->
+              <li><a href="#">Link 1</a></li>
+              <li><a href="#">Link 2</a></li>
+              <% if !current_user %>
+                <li><%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %></li>
+              <% else %>
+                <li><%= link_to "Logout", destroy_user_session_path %></li>
+              <% end %>
+              <!-- END MENU -->
+            </ul>
+            <ul class="right">
+              <li class="search">
+                <form>
+                  <input type="search">
+                </form>
+              </li>
+              <li class="has-button">
+                <a class="small button" href="#">Search</a>
+              </li>
+            </ul>
+          </section>
+      </nav>
+        <!-- End Navigation -->
+        </div>
+      </div>
+
+    <div class="row">
+      <div class="large-12 columns">
+
+        <%= yield %>
+
+      </div>
+    </div>
+
+    <!-- Begin Footer -->
+    <footer class="row">
+      <div class="large-12 columns">
+        <hr>
+        <div class="row">
+          <div class="large-6 columns">
+            <p>&copy; Copyright no one at all. Go to town.</p>
+          </div>
+          <div class="large-6 columns">
+            <ul class="inline-list right">
+              <li><a href="#">Link 1</a></li>
+              <li><a href="#">Link 2</a></li>
+              <li><a href="#">Link 3</a></li>
+              <li><a href="#">Link 4</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- END FOOTER -->
+
     <%= javascript_include_tag "application" %>
   </body>
 </html>
