@@ -36,31 +36,25 @@
           <ul class="title-area">
             <!-- Title Area -->
             <li class="name">
-              <h1><a href="#">Fund with Friends</a></h1>
+              <h1><%= link_to "Fund with Friends", logo_helper %></h1>
             </li>
             <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
           </ul>
           <section class="top-bar-section">
             <ul class="left">
               <!-- MENU -->
-              <li><a href="#">Link 1</a></li>
+              <li><%= link_to "Clubs", clubs_path %></li>
               <li><a href="#">Link 2</a></li>
               <% if !current_user %>
                 <li><%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %></li>
               <% else %>
-                <li><%= link_to "Logout", destroy_user_session_path %></li>
+                <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
               <% end %>
               <!-- END MENU -->
             </ul>
             <ul class="right">
-              <li class="search">
-                <form>
-                  <input type="search">
-                </form>
-              </li>
-              <li class="has-button">
-                <a class="small button" href="#">Search</a>
-              </li>
+
+              <li><%= right_helper %></li>
             </ul>
           </section>
       </nav>
@@ -86,10 +80,8 @@
           </div>
           <div class="large-6 columns">
             <ul class="inline-list right">
-              <li><a href="#">Link 1</a></li>
-              <li><a href="#">Link 2</a></li>
-              <li><a href="#">Link 3</a></li>
-              <li><a href="#">Link 4</a></li>
+              <li><a href="#"></a></li>
+              <li><a href="#"></a></li>
             </ul>
           </div>
         </div>
