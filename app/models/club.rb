@@ -9,5 +9,8 @@
 #
 
 class Club < ActiveRecord::Base
-  # attr_accessible :title, :body
+  has_many :deposits
+  has_many :users, :through => :deposits
+  has_many :transactions
+  has_many :requests
 end
