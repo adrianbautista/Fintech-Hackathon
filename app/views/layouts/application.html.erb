@@ -21,6 +21,10 @@
   </head>
 
   <body>
+    <% if !current_user %>
+      <%= link_to "sign in with facebook", user_omniauth_authorize_path(:facebook) %>
+    <% end %>
+
     <!-- from devise -->
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
