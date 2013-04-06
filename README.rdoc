@@ -1,3 +1,5 @@
+== WORK OFF/BRANCH OFF FROM DEVELOP BRANCH
+
 == Setup / Configuration
 
 1. git clone the repo from the command line:
@@ -8,10 +10,14 @@
 
 3. duplicate config/database.yml.example and rename it config/database.yml, put database information for your local machine
 
-4. start server
+4. saving environment variables (e.g. for api keys and secrets)
+       subl ~/.bash_profile
+       export API_THANG=KEY
+
+5. start server
        rails s
 
-4. lets crush it! 加油!
+6. lets crush it! 加油!
 
 == Resources
 
