@@ -1,7 +1,11 @@
 <h2><%= @club.name %></h2>
 
 <h3>Members</h3>
-List of members
+<ul>
+<%= @members.each do |m| %>
+  <li><%= link_to m.name, m %></li>
+<% end %>
+</ul>
 
 <h3>Performance</h3>
 charts here
