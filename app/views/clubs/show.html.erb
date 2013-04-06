@@ -13,10 +13,11 @@
   <h3>Total Invested Capital</h3>
   <%= number_to_currency(@total_invested) %>
   <div>
-    <%= form_tag do %>
+    <%= form_tag('/deposits') do %>
       <%= text_field_tag 'amount' %>
+      <%= hidden_field_tag 'club_id', @club.id %>
+      <%= submit_tag 'Contribute' %>
     <% end %>
-    <a href="#" class="small button">Invest</a>
   </div>
 </div>
 <div class='club_value'>
