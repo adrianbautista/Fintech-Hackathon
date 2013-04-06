@@ -1,5 +1,9 @@
 class ClubsController < ApplicationController
 
+  def index
+    @clubs = Club.order("created_at DESC")
+  end
+
   def new
     @club = Club.new
     @deposit = Deposit.new
@@ -21,6 +25,7 @@ class ClubsController < ApplicationController
 
   def join
 
+
   end
 
   def show
@@ -36,4 +41,5 @@ class ClubsController < ApplicationController
 
     @members = @deposits.collect(&:user)
   end
+
 end
