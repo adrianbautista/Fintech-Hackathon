@@ -11,16 +11,19 @@ class ClubsController < ApplicationController
     @deposit.user_id = current_user.id
     @deposit.club_id = @club.id
     @deposit.date = Date.today
-    
+  
     if @deposit.save
-      redirect_to root_path, notice: "Awesome!"
+      redirect_to user_path(current_user), notice: "Club #{@club.name} created!"
     else
       render 'new'
     end
   end
 
-  def show
+  def join
 
   end
 
+  def show
+    @club = Club.find(params[:id])
+  end
 end
