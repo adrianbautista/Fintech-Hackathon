@@ -19,6 +19,7 @@
 * Ruby on Rails Guide: http://guides.rubyonrails.org/
 * SASS tutorial: http://sass-lang.com/tutorial.html
 * Devise (for user models, login, views, controllers): https://github.com/plataformatec/devise
+* Farady (for interacting with RESTful APIs): https://github.com/lostisland/faraday | http://www.intridea.com/blog/2012/3/12/faraday-one-http-client-to-rule-them-all
 
 == APIs
 
