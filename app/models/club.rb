@@ -25,15 +25,15 @@ class Club < ActiveRecord::Base
 
 
   def holdings
-    @holdings = {}
+    holdings = {}
     self.transactions.each do |t|
-      if @holdings[t.symbol]
-        @holdings[t.symbol] += ( t.quantity * t.price )
+      if holdings[t.symbol]
+        holdings[t.symbol] += ( t.quantity * t.price )
       else
-        @holdings[t.symbol] = ( t.quantity * t.price )
+        holdings[t.symbol] = ( t.quantity * t.price )
       end
     end
-    return @holdings
+    return holdings
   end
   # (start.to_date..Date.today).map do |date|
   #   {
