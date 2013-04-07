@@ -2,10 +2,10 @@
 
 <div class='club_invested'>
   <h3>Members</h3>
-  <strong><span class='tre'>Name</span><span class='tre'>Percentage</span><span class='tre'>Value</span></strong>
+  <strong><span class='tre'>Name</span><span class='tre'>Percentage</span><span class='tre money'>Value</span></strong>
   <ul>
     <% @members.each do |m| %>
-      <li><span class='tre'><%= m.name %></span><span class='tre'>33%</span><span class='tre'><%= number_to_currency(1000) %></span></li>
+      <li><span class='tre'><%= m.name %></span><span class='tre'>33%</span><span class='tre money'><%= number_to_currency(1000) %></span></li>
     <% end %>
   </ul>
 </div>
@@ -14,22 +14,23 @@
 
 <div class='club_invested'>
   <h3>Invested Capital</h3>
-  <strong><span class='tre'>Date</span><span class='tre'>Name</span><span class='tre'>Amount</span></strong>
+      <strong><span class='tre'>Date</span><span class='tre'>Name</span><span class='tre money'>Amount</span></strong>
+
   <ul>
     <% @deposits.each do |d| %>
       <li>
         <span class='tre'><%= d.date %></span>
         <span class='tre'><%= d.user.name %></span>
-        <span class='tre'><%= number_to_currency(d.amount) %></span>
+        <span class='tre money'><%= number_to_currency(d.amount) %></span>
       </li>
     <% end %>
   </ul>
-  <%= number_to_currency(@total_invested) %>
+  <span class='tre'></span><span class='tre'></span><span class='tre money'><%= number_to_currency(@total_invested) %></span>
   <div>
     <%= form_tag('/deposits') do %>
-      <%= text_field_tag 'amount' %>
+      <%= text_field_tag 'amount', '', :id => 'deposit' %>
       <%= hidden_field_tag 'club_id', @club.id %>
-      <%= submit_tag 'Contribute', :class => 'small button' %>
+      <%= submit_tag 'Contribute', :class => 'small button', :id => 'contribute' %>
     <% end %>
   </div>
 </div>
