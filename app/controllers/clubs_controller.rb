@@ -1,5 +1,5 @@
 class ClubsController < ApplicationController
-  
+
 
   def index
     @clubs = Club.order("created_at DESC")
@@ -50,8 +50,11 @@ class ClubsController < ApplicationController
       end
     end
     @votes = current_user.votes.where(:club_id => @club.id).where(:value => nil)
+
     @graph_hash = {}
-    @club.portfolio.each do |ticker|
+    @portfolio_wo_USD = @club.portfolio
+    @portfolio_wo_USD.delete('USD')
+    @portfolio_wo_USD.each do |ticker|
       response = HTTParty.get("http://api.estimize.com/companies/#{ticker}/releases/2012.json",
         :headers => { "X-Estimize-Key" => "bc6edcf551938a889850525e" })
       @graph_hash[ticker.to_sym] = []
