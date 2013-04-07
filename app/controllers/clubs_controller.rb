@@ -52,26 +52,25 @@ class ClubsController < ApplicationController
         @holdings[t.symbol] = ( t.quantity * t.price )
       end
     end
-    @votes = @club.votes.where(:club_id => @club.id).where(:value => nil)
-
-    @graph_hash = {}
-    @portfolio_wo_USD = @club.portfolio
-    @portfolio_wo_USD.delete('USD')
-    @portfolio_wo_USD.each do |ticker|
-      response = HTTParty.get("http://api.estimize.com/companies/#{ticker}/releases/2012.json",
-        :headers => { "X-Estimize-Key" => "bc6edcf551938a889850525e" })
-      @graph_hash[ticker.to_sym] = []
-      response.each do |info|
-        { year: info[:fiscal_year],
-          quarter: info[:fiscal_quarter],
-          eps: info[:eps],
-          revenue: info[:revenue],
-          con_rev: info[:consensus_revenue_estimate],
-          con_eps: info[:consensus_eps_estimate],
-          wall_rev: info[:wallstreet_revenue_estimate],
-          wall_eps: info[:wallstreet_eps_estimate] }
-        @graph_hash[ticker.to_sym] << info
-      end
-    end
+    @votes = @club.votes.where(:club_id => @club.id).where(:value => nil).where(:user_id => current_user.id)
+    # @graph_hash = {}
+    # @portfolio_wo_USD = @club.portfolio
+    # @portfolio_wo_USD.delete('USD')
+    # @portfolio_wo_USD.each do |ticker|
+    #   response = HTTParty.get("http://api.estimize.com/companies/#{ticker}/releases/2012.json",
+    #     :headers => { "X-Estimize-Key" => "bc6edcf551938a889850525e" })
+    #   @graph_hash[ticker.to_sym] = []
+    #   response.each do |info|
+    #     { year: info[:fiscal_year],
+    #       quarter: info[:fiscal_quarter],
+    #       eps: info[:eps],
+    #       revenue: info[:revenue],
+    #       con_rev: info[:consensus_revenue_estimate],
+    #       con_eps: info[:consensus_eps_estimate],
+    #       wall_rev: info[:wallstreet_revenue_estimate],
+    #       wall_eps: info[:wallstreet_eps_estimate] }
+    #     @graph_hash[ticker.to_sym] << info
+    #   end
+    # end
   end
 end
