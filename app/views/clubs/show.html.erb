@@ -36,7 +36,11 @@
 </div>
 <div class='club_value'>
   <h3>Club Holdings</h3>
-  Security List + Qty + Value
+  <ul>
+    <% @holdings.each do |k,v| %>
+      <li><%= k %> - <%= number_to_currency(v) %></li>
+    <% end %>
+  </ul>
   <br>
   Total Portfolio Value
 </div>
