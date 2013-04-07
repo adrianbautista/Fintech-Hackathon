@@ -11,7 +11,13 @@
 </div>
 <div class='club_value'>
   <h3>Pending Votes</h3>
-
+  <% @votes.each do |v| %>
+    <%= v.request.symbol %>
+    <%= v.request.quantity %>
+    <%= v.request.price %>
+    <%= button_tag :accept, id: v.id, class: 'accept tiny button success' %>
+    <%= button_tag :decline , id: v.id, class: 'decline tiny button alert' %>
+  <% end %>
 </div>
 <div class='clearfix'></div>
 

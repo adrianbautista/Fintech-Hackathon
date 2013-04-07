@@ -56,8 +56,7 @@ class ClubsController < ApplicationController
         @holdings[t.symbol] = ( t.quantity * t.price )
       end
     end
-    # FIX THIS SHITS!!!
-    @requests = @club.requests.where(: nil)
+    @votes = current_user.votes.where(:club_id => @club.id)
   end
 
 end
