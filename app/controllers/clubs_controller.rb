@@ -57,6 +57,7 @@ class ClubsController < ApplicationController
       end
     end
     @votes = current_user.votes.where(:club_id => @club.id).where(:value => nil)
+
   end
 
 end
