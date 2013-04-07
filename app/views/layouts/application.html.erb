@@ -53,9 +53,9 @@
                 </li>
               <% else %>
                 <li><%= link_to "Clubs", clubs_path %></li>
+                <li><%= right_helper %></li>
                 <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
               <% end %>
-              <li><%= right_helper %></li>
             </ul>
           </section>
       </nav>
