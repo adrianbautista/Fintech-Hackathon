@@ -13,12 +13,12 @@ user4 = User.create(email: 'adrian@gmail.com', name: 'Adrian Bautista', provider
 club1 = Club.create(name: 'Huntington Management')
 club2 = Club.create(name: 'GA')
 
-deposit1 = Deposit.create(user_id: user1.id, club_id: club1.id, amount: 10000, date: Date.new(2013,1,5))
-deposit2 = Deposit.create(user_id: user2.id, club_id: club1.id, amount: 10000, date: Date.new(2013,1,10))
-deposit3 = Deposit.create(user_id: user3.id, club_id: club1.id, amount: 10000, date: Date.new(2013,1,20))
+deposit1 = Deposit.create(user_id: user1.id, club_id: club1.id, amount: 10000, date: Date.new(2012,1,5))
+deposit2 = Deposit.create(user_id: user2.id, club_id: club1.id, amount: 10000, date: Date.new(2012,1,10))
+deposit3 = Deposit.create(user_id: user3.id, club_id: club1.id, amount: 10000, date: Date.new(2012,1,20))
 
-deposit4 = Deposit.create(user_id: user1.id, club_id: club2.id, amount: 10000, date: Date.new(2013,1,4))
-deposit5 = Deposit.create(user_id: user4.id, club_id: club2.id, amount: 10000, date: Date.new(2013,1,9))
+deposit4 = Deposit.create(user_id: user1.id, club_id: club2.id, amount: 10000, date: Date.new(2012,1,4))
+deposit5 = Deposit.create(user_id: user4.id, club_id: club2.id, amount: 10000, date: Date.new(2012,1,9))
 
 Transaction.create(club_id: club1.id, symbol: 'GOOG', price: 585.52, quantity: 10, date: Date.new(2012,1,23))
 Transaction.create(club_id: club1.id, symbol: 'AAPL', price: 427.41, quantity: 20, date: Date.new(2012,1,23))
@@ -33,6 +33,7 @@ request1 = Request.create(club_id: club1.id, date: Date.new(2013,1,24), price: 7
 request3 = Request.create(club_id: club1.id, date: Date.new(2013,1,20), price: 100, quantity: 10, symbol: 'C', user_id: 2, message: 'Wall street is back', status: 'pending' )
 # request4 = Request.create(club_id: 2, date: Date.new(2013,4,4), price: 9.23, quantity: 10, symbol: 'NYT', user_id: 2, message: 'Strong revenue growth', status: 'rejected' )
 # request2 = Request.create(club_id: 2, date: Date.new(2013,2,22), price: 550, quantity: -10, symbol: 'AAPL', user_id: 3, message: 'Huge cash reserves', status: 'rejected' )
+request4 = Request.create(club_id: club2.id, date: Date.new(2013,1,20), price: 100, quantity: 10, symbol: 'C', user_id: 2, message: 'Wall street is back', status: 'pending' )
 
 
 Vote.create(request_id: request1.id, user_id: user1.id, club_id: club1.id, value: true)
@@ -41,3 +42,5 @@ Vote.create(request_id: request1.id, user_id: user3.id, club_id: club1.id)
 Vote.create(request_id: request3.id, user_id: user2.id, club_id: club1.id, value: true)
 Vote.create(request_id: request3.id, user_id: user1.id, club_id: club1.id)
 Vote.create(request_id: request3.id, user_id: user1.id, club_id: club1.id)
+
+Vote.create(request_id: request4.id, user_id: user1.id, club_id: club2.id)

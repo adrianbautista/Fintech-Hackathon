@@ -50,6 +50,7 @@ class ClubsController < ApplicationController
       end
     end
     @votes = current_user.votes.where(:club_id => @club.id).where(:value => nil)
+    
     @graph_hash = {}
     @club.portfolio.each do |ticker|
       response = HTTParty.get("http://api.estimize.com/companies/#{ticker}/releases/2012.json",
