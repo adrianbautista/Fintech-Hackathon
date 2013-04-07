@@ -104,21 +104,19 @@
     </div>
   </div>
   <div class="large-6 columns">
-    <h3>CLUB HOLDINGS</h3>
+    <h3 class="submarine">CLUB HOLDINGS</h3>
     <table>
       <thead>
         <tr>
           <th>Security</th>
-          <th>Quantity</th>
           <th>Value</th>
         </tr>
       </thead>
       <tbody>
-        <% @holdings.each do |k,v| %>
+        <% @club.holdings.each do |k,v| %>
         <tr>
-          <td><% k %></td>
+          <td><%= k %></td>
           <td><%= number_to_currency(v) %></td>
-          <td></td>
         </tr>
         <% end %>
       </tbody>
@@ -128,40 +126,15 @@
 
 <div class='club_value'>
   
-  <div id="holdings_list">
-    <strong><div class='tre'>Security</div>
-    <div class='tre'>Quantity</div>
-    <div class='tre'>Value</div></strong>
-    <ul>
-      
-        <li>
-          <div class='tre'>x</div>
-          <div class='tre rity'>/div>
-        </li>
+  <%= content_tag :div, "", id: "holdings_view", data: {holdings: @holdings } %>
 
-      
-      <li>TOTAL VALUE HERE</li>
-    </ul>
-  </div>
-  <%= content_tag :div, "", id: "holdings_view", data: {holdings: @holdings} %>
-
+  <!-- <div id='holdings_view'>  </div> -->
+</div>
 </div>
 <div class='clearfix'></div>
 <h3>Performance</h3>
+
+charts here
 <%= @big_graph %>
 
 <div id="area-example"></div>
-
-
-<script>
-new Morris.Donut({
-  element: 'holdings_view',
-  data: [
-    {label: "GOOG", value: 5855},
-    {label: "AAPL", value: 8548},
-    {label: "VMW", value: 5160},
-    {label: "CTSH", value: 2824}
-  ]
-});
-
-</script>

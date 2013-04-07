@@ -47,10 +47,13 @@ class ClubsController < ApplicationController
     end
 
     @members = @deposits.collect(&:user).uniq
-    @holdings = {}
+
+    @holdings = []
     @club.holdings.each do |symbol, value|
-      @holdings[:label] = symbol
-      @holdings[:value] = value
+      holding = {}
+      holding[:label] = symbol
+      holding[:value] = value.to_i
+      @holdings << holding
     end
 
     @portfolio_list = []
@@ -70,7 +73,39 @@ class ClubsController < ApplicationController
     end
     @performance = (@percent.inject(0.0) { |sum, el| sum + el } / @percent.size) * 100
 
-    @members = @club.members
+
+    # @pie=[@holdings]
+    # @holdings.each do |h|
+    #   @pie << h 
+    # end
+
+    @json = '#{@holdings}'
+
+    # @portfolio_list = []
+    # @portfolio_wo_USD = @club.portfolio
+    # @portfolio_wo_USD.delete('USD')
+    # @portfolio_wo_USD.each do |ticker|
+    #   @portfolio_list << YahooFinance::get_quotes(YahooFinance::StandardQuote, ticker)[ticker].lastTrade
+    # end
+
+    # @portfolio_list = []
+    # @portfolio_wo_USD1 = @club.portfolio
+    # @portfolio_wo_USD1.delete('USD')
+    # @portfolio_wo_USD1.each do |ticker|
+    #   @portfolio_list << YahooFinance::get_quotes(YahooFinance::StandardQuote, ticker)[ticker].lastTrade
+    # end
+    # @begin = Transaction.where(club_id: @club.id).map(&:price)
+
+    # @percent = []
+    # count = 0
+    # @portfolio_list.each do |ending|
+    #   start = @begin[count]
+    #   @percent << ( (ending / start) - 1 )
+    #   count += 1
+    # end
+
+
+    # @members = @club.members
 
     @votes = @club.votes.where(:club_id => @club.id).where(:value => nil).where(:user_id => current_user.id)
 
@@ -109,6 +144,5 @@ class ClubsController < ApplicationController
       @big_graph[symbol] = equity
       @big_graph['USD'] = cash
     end
-    # binding.pry
   end
 end
