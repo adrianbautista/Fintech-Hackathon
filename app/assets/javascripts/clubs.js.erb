@@ -1,7 +1,7 @@
 $(function(){
   $('button.accept').click(AcceptRequest);
   $('button.decline').click(DeclineRequest);
-  // $('#graph_it').click(GraphIt);
+  HoldingsPie();
 });
 
 function AcceptRequest() {
@@ -28,4 +28,16 @@ function DeclineRequest() {
       row.hide();
     }
   });
+}
+
+function HoldingsPie() {
+
+var data = $('#holdings_view').data('holdings')
+// var jsonObj = $.parseJSON(data);
+
+new Morris.Donut({
+  element: 'holdings_view',
+  data: [data]
+});
+
 }
