@@ -28,7 +28,6 @@ class ClubsController < ApplicationController
   end
 
   def show
-
     @club = Club.find(params[:id])
     @deposits = @club.deposits
 
@@ -38,7 +37,7 @@ class ClubsController < ApplicationController
       @total_invested += d.amount
     end
 
-    @members = @deposits.collect(&:user)
+    @members = @deposits.collect(&:user).uniq
   end
 
 end
