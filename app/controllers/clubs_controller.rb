@@ -91,11 +91,14 @@ class ClubsController < ApplicationController
     @portfolio_wo_USD.delete('USD')
     @portfolio_wo_USD.each do |symbol, worth|
       equity = {}
+      cash = {}
       YahooFinance::get_HistoricalQuotes_days( symbol.downcase, 30 ) do |hq|
         equity[hq.date] = hq.close
+        cash[hq.date] = 1
       end
       @big_graph[symbol] = equity
+      @big_graph['USD'] = cash
     end
-
+    # binding.pry
   end
 end
