@@ -113,7 +113,13 @@
         </tr>
       </thead>
       <tbody>
-        
+        <% @holdings.each do |k,v| %>
+        <tr>
+          <td><% k %></td>
+          <td><%= number_to_currency(v) %></td>
+          <td></td>
+        </tr>
+        <% end %>
       </tbody>
     </table>
   </div>
@@ -126,13 +132,13 @@
     <div class='tre'>Quantity</div>
     <div class='tre'>Value</div></strong>
     <ul>
-      <% @holdings.each do |k,v| %>
+      
         <li>
-          <div class='tre'><%= k %></div>
-          <div class='tre rity'><%= number_to_currency(v) %></div>
+          <div class='tre'>x</div>
+          <div class='tre rity'>/div>
         </li>
 
-      <% end %>
+      
       <li>TOTAL VALUE HERE</li>
     </ul>
   </div>
