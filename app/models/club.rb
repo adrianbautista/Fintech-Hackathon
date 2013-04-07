@@ -14,5 +14,8 @@ class Club < ActiveRecord::Base
   has_many :transactions
   has_many :requests
 
+  def members
+    self.users.uniq
+  end
 
 end

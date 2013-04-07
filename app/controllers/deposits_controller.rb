@@ -1,5 +1,5 @@
 class DepositsController < ApplicationController
-  
+
   def new
     @user = current_user
     @club = Club.find(params[:club_id])
@@ -25,5 +25,5 @@ class DepositsController < ApplicationController
       redirect_to club_path(@club), notice: "Deposit failed!"
     end
   end
-  
+
 end

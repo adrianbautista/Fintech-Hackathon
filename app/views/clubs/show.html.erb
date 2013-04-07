@@ -11,7 +11,15 @@
 </div>
 <div class='club_value'>
   <h3>Pending Votes</h3>
-
+  <% @votes.each do |v| %>
+    <div class='row'>
+      <%= v.request.symbol %>
+      <%= v.request.quantity %>
+      <%= v.request.price %>
+      <%= button_tag :accept, id: v.id, class: 'accept tiny button success' %>
+      <%= button_tag :decline , id: v.id, class: 'decline tiny button alert' %>
+    </div>
+  <% end %>
 </div>
 <div class='clearfix'></div>
 
@@ -34,7 +42,6 @@
       <span class='tre money'><strong><%= number_to_currency(@total_invested) %></strong></span>
     </li>
   </ul>
-<%= number_to_currency(@total_invested) %>
   <div>
     <%= form_tag('/deposits') do %>
       <%= text_field_tag 'amount', '', :id => 'deposit' %>
