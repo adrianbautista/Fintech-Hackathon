@@ -12,7 +12,7 @@ class RequestsController < ApplicationController
     end
     # Vote.find(request_id)
 
-    @request.votes.find_by_user_id(current_user.id).update_attributes(:value => true)
+    current_user.votes.where(request_id: @request.id).first.update_attributes(:value => true)
 
     ## look for math to see if majority rules, then place trade
     if @request.votes.where(value: true).count / @request.club.members.count > 0.5

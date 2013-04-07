@@ -15,7 +15,8 @@
 //= require foundation
 //= require raphael-min
 //= require morris
-//= require clubs
 //= require requests
+//= require clubs
+
 
 $(document).foundation();
