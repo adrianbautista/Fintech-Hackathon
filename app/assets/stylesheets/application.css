@@ -16,15 +16,21 @@
 .club_invested{
   width: 50%;
   float: left;
-  padding: 10px;
+  padding-right: 10px;
 }
-
+.tre{
+  display: inline-block;
+  width: 33%;
+}
 .club_value{
   width: 50%;
   float: left;
-  padding: 10px;
+  padding-left: 10px;
 }
 
+li{
+  list-style-type: none;
+}
 
 .clearfix{
   clear: both;
