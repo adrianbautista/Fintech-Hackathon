@@ -13,7 +13,6 @@ class RequestsController < ApplicationController
     redirect_to club_path(@request.club)
   end
 
-
   def show
   end
 

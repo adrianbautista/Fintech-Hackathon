@@ -5,10 +5,10 @@
 
 
 <%= form_for @request do |f| %>
-  <%= f.text_field :symbol %>
-  <%= f.number_field :quantity %>
-  <%= f.number_field :price %>
-  <%= f.text_area :message %>
+  Symbol: <%= f.text_field :symbol %>
+  Quantity: <%= f.number_field :quantity %>
+  Price: <%= f.number_field :price %>
+  Message: <%= f.text_area :message %>
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :club_id, value: @club_id %>
   <%= f.submit  %>
