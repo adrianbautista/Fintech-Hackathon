@@ -47,11 +47,15 @@ class ClubsController < ApplicationController
 
     @members = @deposits.collect(&:user).uniq
 
+    @holdings = {}
+
     @club.transactions.each do |t|
-
+      if @holdings[t.symbol]
+        @holdings[t.symbol] += ( t.quantity * t.price )
+      else
+        @holdings[t.symbol] = ( t.quantity * t.price )
+      end
     end
-
-
 
   end
 
