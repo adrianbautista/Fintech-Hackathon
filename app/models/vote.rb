@@ -14,4 +14,5 @@
 class Vote < ActiveRecord::Base
   attr_accessible :club_id, :request_id, :user_id, :value
   belongs_to :request
+  belongs_to :user, :through => :request
 end
