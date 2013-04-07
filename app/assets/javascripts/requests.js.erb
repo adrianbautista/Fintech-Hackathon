@@ -5,17 +5,13 @@ $(function() {
 });
 
 function findEquity() {
-  $('#search_result').empty();
-  var div = $('<div>');
-  var p = $('<p>');
-  var h1 = $('<h1>');
-  var symbol = $('#ticker_symbol').val().toLowerCase();
+  $('#ticker_symbol').empty();
+  $('#last_price').empty();
+  var symbol = $('#ticker_symbol').val();
   var url = "http://dev.markitondemand.com/Api/Quote/jsonp?symbol=";
   $.getJSON( url + symbol +"&callback=?", function (data) {
     console.log(data);
-    p.html(data["Data"]["LastPrice"]);
-    h1.html(data["Data"]["Name"]);
-    div.append(h1).append(p);
-    $('#search_result').append(div);
+    $('#stock_name').html(data["Data"]["Name"]);
+    $('#last_price').html("$" + data["Data"]["LastPrice"]);
   });
 }

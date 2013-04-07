@@ -1,9 +1,28 @@
-<h2>New Request</h2>
+<div class="row">
+  <div class="large-12 columns">
+    <h2>New Request</h2>
+  </div>
+</div>
 
-<%= text_field_tag :ticker_symbol %>
-<%= button_tag 'Search Equity', id: 'search_equity' %>
+<div class="row">
+  <div class="large-6 large-centered columns">
+    <div class="row collapse">
+      <div class="small-10 columns">
+        <%= text_field_tag :ticker_symbol, nil, placeholder: "Enter Ticker Symbol" %>
+      </div>
+      <div class="small-2 columns">
+        <%= button_tag 'Search Equity', id: 'search_equity', class: 'button prefix' %>
+      </div>
+    </div>
+  </div>
+  <div class="large-6 large-centered columns" id="search_result">
+    <h3 id="stock_name"></h3>
+    <h3 id="last_price"></h3>
+  </div>
+</div>
 
-<div id="search_result"></div>
+div.row
+
 
 
 <%= form_for @request do |f| %>
