@@ -135,7 +135,6 @@
 
 <h3>Performance</h3>
 
-charts here
-<%= @big_graph %>
-
 <div id="area-example"></div>
+
+<%= content_tag :div, "", id: "performance-area", data: {performance: @perf } %>
