@@ -6,10 +6,10 @@ class DepositsController < ApplicationController
   end
 
   def create
-    @user = current_user
+    @user = User.where(name: current_user.name).order("created_at").first
     @club = Club.find(params[:club_id])
     @deposit = Deposit.new(amount: params[:amount])
-    @deposit.user_id = current_user.id
+    @deposit.user_id = @user.id
     @deposit.club_id = @club.id
     @deposit.date = Date.today
     @transaction = Transaction.new

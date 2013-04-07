@@ -13,6 +13,7 @@ class Club < ActiveRecord::Base
   has_many :users, :through => :deposits
   has_many :transactions
   has_many :requests
+  has_many :votes, :through => :requests
 
   def members
     self.users.uniq

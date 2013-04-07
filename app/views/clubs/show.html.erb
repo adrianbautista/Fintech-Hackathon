@@ -11,24 +11,27 @@
 </div>
 <div class='club_requests'>
   <h3>Make a Request</h3>
-  <%= link_to 'Request', new_request_path %>
+  <%= link_to 'Request', new_request_path, class: "large", id: "graph_it"  %>
 </div>
-<div class='clearfix'></div>
+<!-- <div class='clearfix'></div> -->
 <div class='club_value'>
   <h3>Pending Votes</h3>
-  <% @votes.each do |v| %>
-    <div class='row'>
-      <%= v.request.symbol %>
-      <%= v.request.quantity %>
-      <%= v.request.price %>
-      <%= button_tag :accept, id: v.id, class: 'accept tiny button success' %>
-      <%= button_tag :decline , id: v.id, class: 'decline tiny button alert' %>
-    </div>
-  <% end %>
+  <ul>
+    <% @votes.each do |v| %>
+      <li>
+        <%= v.request.symbol %>
+        <%= v.request.quantity %>
+        <%= v.request.price %>
+        <%= button_tag :accept, id: v.id, class: 'accept tiny button success' %>
+        <%= button_tag :decline , id: v.id, class: 'decline tiny button alert' %>
+      </li>
+    <% end %>
+  </ul>
 </div>
 <div class='clearfix'></div>
 
-<button class='large' id='graph_it'>graph it</button>
+
+<!-- <button class='large' id='graph_it'>graph it</button> -->
 
 <div class='club_invested'>
   <h3>Invested Capital</h3>

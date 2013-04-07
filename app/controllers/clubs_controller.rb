@@ -13,7 +13,9 @@ class ClubsController < ApplicationController
   def create
     @club = Club.create(name: params[:club][:name])
     @deposit = Deposit.new(amount: params[:deposit][:amount])
-    @deposit.user_id = current_user.id
+    @user = User.where(name: current_user.name).order("created_at").first
+
+    @deposit.user_id = @user.id
     @deposit.club_id = @club.id
     @deposit.date = Date.today
     @transaction = Transaction.new
@@ -34,6 +36,7 @@ class ClubsController < ApplicationController
   end
 
   def show
+    @user = User.where(name: current_user.name).order("created_at").first
     @club = Club.find(params[:id])
     @deposits = @club.deposits
     @total_invested = 0
@@ -49,7 +52,7 @@ class ClubsController < ApplicationController
         @holdings[t.symbol] = ( t.quantity * t.price )
       end
     end
-    @votes = current_user.votes.where(:club_id => @club.id).where(:value => nil)
+    @votes = @club.votes.where(:club_id => @club.id).where(:value => nil)
 
     @graph_hash = {}
     @portfolio_wo_USD = @club.portfolio
