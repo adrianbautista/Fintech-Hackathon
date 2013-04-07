@@ -68,6 +68,7 @@ class ClubsController < ApplicationController
       @percent << ( (ending / start) - 1 )
       count += 1
     end
+    @performance = (@percent.inject(0.0) { |sum, el| sum + el } / @percent.size) * 100
 
     @members = @club.members
 
