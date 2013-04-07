@@ -52,8 +52,7 @@ class ClubsController < ApplicationController
         @holdings[t.symbol] = ( t.quantity * t.price )
       end
     end
-    @votes = @club.votes.where(:club_id => @club.id).where(:value => nil)
-
+    @votes = @club.votes.where(:club_id => @club.id).where(:value => nil).where(:user_id => current_user.id)
     # @graph_hash = {}
     # @portfolio_wo_USD = @club.portfolio
     # @portfolio_wo_USD.delete('USD')

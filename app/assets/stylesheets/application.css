@@ -28,6 +28,9 @@
   display: inline-block;
   width: 15%;
 }
+.rity{
+  text-align: right;
+}
 
 .money{
   text-align: right;

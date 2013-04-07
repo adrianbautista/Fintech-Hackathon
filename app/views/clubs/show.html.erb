@@ -15,13 +15,13 @@
 </div>
 <!-- <div class='clearfix'></div> -->
 <div class='club_value'>
-  <h3>Pending Votes</h3>
+  <h3><%= 'Pending Votes' if @votes.present? %></h3>
   <ul>
     <% @votes.each do |v| %>
       <li>
-        <div class='quads'><%= v.request.symbol %></div>
-        <div class='quads'><%= v.request.quantity %></div>
-        <div class='quads'><%= number_to_currency(v.request.price) %></div>
+        <div class='quads rity'><%= v.request.symbol %></div>
+        <div class='quads rity'><%= v.request.quantity %></div>
+        <div class='quads rity'><%= number_to_currency(v.request.price) %></div>
         <%= button_tag :accept, id: v.id, class: 'accept tiny button success' %>
         <%= button_tag :decline , id: v.id, class: 'decline tiny button alert' %>
       </li>

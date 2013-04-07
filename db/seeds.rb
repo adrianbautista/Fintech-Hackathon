@@ -35,10 +35,10 @@ Transaction.create(club_id: club2.id, symbol: 'RDN', price: 2.97, quantity: 3000
 Transaction.create(club_id: club2.id, symbol: 'USD', price: 1, quantity: 6379.7, date: Date.new(2012,1,23))
 
 request1 = Request.create(club_id: club1.id, date: Date.new(2013,1,24), price: 750, quantity: -10, symbol: 'GOOG', user_id: 2, message: 'Future of technology', status: 'pending' )
-request3 = Request.create(club_id: club1.id, date: Date.new(2013,1,20), price: 100, quantity: 10, symbol: 'C', user_id: 2, message: 'Wall street is back', status: 'pending' )
+request3 = Request.create(club_id: club1.id, date: Date.new(2013,1,20), price: 41, quantity: 10, symbol: 'C', user_id: 2, message: 'Wall street is back', status: 'pending' )
 # request4 = Request.create(club_id: 2, date: Date.new(2013,4,4), price: 9.23, quantity: 10, symbol: 'NYT', user_id: 2, message: 'Strong revenue growth', status: 'rejected' )
 # request2 = Request.create(club_id: 2, date: Date.new(2013,2,22), price: 550, quantity: -10, symbol: 'AAPL', user_id: 3, message: 'Huge cash reserves', status: 'rejected' )
-request4 = Request.create(club_id: club2.id, date: Date.new(2013,1,20), price: 100, quantity: 10, symbol: 'C', user_id: 2, message: 'Wall street is back', status: 'pending' )
+request4 = Request.create(club_id: club2.id, date: Date.new(2013,1,20), price: 42, quantity: 10, symbol: 'C', user_id: 2, message: 'Wall street is back', status: 'pending' )
 
 
 Vote.create(request_id: request1.id, user_id: user1.id, club_id: club1.id, value: true)
