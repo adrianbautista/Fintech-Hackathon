@@ -21,9 +21,9 @@ user3 = User.create(email: 'kim@gmail.com')
 
 club1 = Club.create(name: 'Huntington Management')
 
-deposit1 = Deposit.create(user_id: 2, club_id: club1.id, amount: 10000, date: Date.new(2013,1,5))
-deposit1 = Deposit.create(user_id: 3, club_id: club1.id, amount: 10000, date: Date.new(2013,1,10))
-deposit1 = Deposit.create(user_id: 4, club_id: club1.id, amount: 10000, date: Date.new(2013,1,20))
+deposit1 = Deposit.create(user_id: user1.id, club_id: club1.id, amount: 10000, date: Date.new(2013,1,5))
+deposit1 = Deposit.create(user_id: user2.id, club_id: club1.id, amount: 10000, date: Date.new(2013,1,10))
+deposit1 = Deposit.create(user_id: user3.id, club_id: club1.id, amount: 10000, date: Date.new(2013,1,20))
 
 Transaction.create(club_id: club1.id, symbol: 'GOOG', price: 810.31, quantity: 10, date: Date.new(2013,1,22))
 Transaction.create(club_id: club1.id, symbol: 'AAPL', price: 501.19, quantity: 10, date: Date.new(2013,2,1))
