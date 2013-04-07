@@ -47,11 +47,21 @@ class ClubsController < ApplicationController
     end
 
     @members = @deposits.collect(&:user).uniq
-    @holdings = {}
+
+    @holdings = []
     @club.holdings.each do |symbol, value|
-      @holdings[:label] = symbol
-      @holdings[:value] = value
+      holding = {}
+      holding[:label] = symbol
+      holding[:value] = value.to_i
+      @holdings << holding
     end
+
+    # @pie=[@holdings]
+    # @holdings.each do |h|
+    #   @pie << h 
+    # end
+
+    @json = '#{@holdings}'
 
     # @portfolio_list = []
     # @portfolio_wo_USD = @club.portfolio
@@ -92,16 +102,16 @@ class ClubsController < ApplicationController
 #      + "#{hq.close},#{hq.volume},#{hq.adjClose}"
 # end
 # # Getting t
-    @big_graph = {}
-    @portfolio_wo_USD = @holdings
-    @portfolio_wo_USD.delete('USD')
-    @portfolio_wo_USD.each do |symbol, worth|
-      equity = {}
-      YahooFinance::get_HistoricalQuotes_days( symbol.downcase, 30 ) do |hq|
-        equity[hq.date] = hq.close
-      end
-      @big_graph[symbol] = equity
-    end
+    # @big_graph = {}
+    # @portfolio_wo_USD = @holdings
+    # @portfolio_wo_USD.delete('USD')
+    # @portfolio_wo_USD.each do |symbol, worth|
+    #   equity = {}
+    #   YahooFinance::get_HistoricalQuotes_days( symbol.downcase, 30 ) do |hq|
+    #     equity[hq.date] = hq.close
+    #   end
+    #   @big_graph[symbol] = equity
+    # end
 
   end
 end
