@@ -1,9 +1,8 @@
 <h2>New Request</h2>
 
-<%= form_tag search_requests_path, method: 'get', remote: true do %>
-  <%= text_field_tag :ticker_symbol %>
-  <%= submit_tag 'Search Equity', id: 'search_equity' %>
-<% end %>
+<%= text_field_tag :ticker_symbol %>
+<%= button_tag 'Search Equity', id: 'search_equity' %>
+
 
 <%= form_for @request do |f| %>
   <%= f.text_field :symbol %>
