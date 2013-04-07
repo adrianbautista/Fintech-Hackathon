@@ -63,8 +63,6 @@ class ClubsController < ApplicationController
 
     @votes = @club.votes.where(:club_id => @club.id).where(:value => nil).where(:user_id => current_user.id)
 
-
-binding.pry
     # @graph_hash = {}
     # @portfolio_wo_USD = @club.portfolio
     # @portfolio_wo_USD.delete('USD')
@@ -93,7 +91,7 @@ binding.pry
 # end
 # # Getting t
     @big_graph = {}
-    @portfolio_wo_USD = @holdings
+    @portfolio_wo_USD = @club.holdings
     @portfolio_wo_USD.delete('USD')
     @portfolio_wo_USD.each do |symbol, worth|
       equity = {}
