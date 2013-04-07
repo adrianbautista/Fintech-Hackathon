@@ -2,7 +2,7 @@ class RequestsController < ApplicationController
 
   def new
     @request = Request.new
-
+    @club_id = params[:id]
   end
 
   def create

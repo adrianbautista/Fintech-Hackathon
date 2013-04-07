@@ -6,10 +6,13 @@ SriRails::Application.routes.draw do
 
   root :to => 'home#index'
   resources :users
-  resources :clubs
-  resources :requests do
-    collection do
-      get 'search'
+  resources :clubs do
+    member do
+      resources :requests do
+        collection do
+          get 'search'
+        end
+      end
     end
   end
   resources :transactions
