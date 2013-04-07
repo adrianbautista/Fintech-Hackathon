@@ -11,7 +11,15 @@
 </div>
 <div class='club_value'>
   <h3>Pending Votes</h3>
-
+  <% @votes.each do |v| %>
+    <div class='row'>
+      <%= v.request.symbol %>
+      <%= v.request.quantity %>
+      <%= v.request.price %>
+      <%= button_tag :accept, id: v.id, class: 'accept tiny button success' %>
+      <%= button_tag :decline , id: v.id, class: 'decline tiny button alert' %>
+    </div>
+  <% end %>
 </div>
 <div class='clearfix'></div>
 
@@ -34,7 +42,6 @@
       <span class='tre money'><strong><%= number_to_currency(@total_invested) %></strong></span>
     </li>
   </ul>
-<%= number_to_currency(@total_invested) %>
   <div>
     <%= form_tag('/deposits') do %>
       <%= text_field_tag 'amount', '', :id => 'deposit' %>
@@ -45,13 +52,16 @@
 </div>
 <div class='club_value'>
   <h3>Club Holdings</h3>
-  <ul>
-    <% @holdings.each do |k,v| %>
-      <li><%= k %> - <%= number_to_currency(v) %></li>
-    <% end %>
-  </ul>
-  <br>
-  Total Portfolio Value
+  <div id="holdings_list" style="height: 250px;">
+    <ul>
+      <% @holdings.each do |k,v| %>
+        <li><%= k %> - <%= number_to_currency(v) %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div id="holdings_view" style="height: 250px;">
+
+  </div>
 </div>
 <div class='clearfix'></div>
 <div class='club_requests'>
@@ -61,3 +71,29 @@
 <div class='clearfix'></div>
 <h3>Performance</h3>
 charts here
+
+
+<script>
+
+new Morris.Line({
+  // ID of the element in which to draw the chart.
+  element: 'holdings_view',
+  // Chart data records -- each entry in this array corresponds to a point on
+  // the chart.
+  data: [
+    { year: '2008', value: 20 },
+    { year: '2009', value: 10 },
+    { year: '2010', value: 5 },
+    { year: '2011', value: 5 },
+    { year: '2012', value: 20 }
+  ],
+  // The name of the data record attribute that contains x-values.
+  xkey: 'year',
+  // A list of names of data record attributes that contain y-values.
+  ykeys: ['value'],
+  // Labels for the ykeys -- will be displayed when you hover over the
+  // chart.
+  labels: ['Value']
+});
+
+</script>

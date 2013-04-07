@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+
 # User.delete_all
 Club.delete_all
 Deposit.delete_all
@@ -64,4 +65,5 @@ Vote.create()
     t.boolean  "value"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+
 

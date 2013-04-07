@@ -13,5 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require raphael-min
+//= require morris
+//= require application
 
 $(document).foundation();

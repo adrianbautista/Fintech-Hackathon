@@ -3,6 +3,8 @@
 <%= text_field_tag :ticker_symbol %>
 <%= button_tag 'Search Equity', id: 'search_equity' %>
 
+<div id="search_result"></div>
+
 
 <%= form_for @request do |f| %>
   Symbol: <%= f.text_field :symbol %>
