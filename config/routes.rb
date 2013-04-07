@@ -7,7 +7,11 @@ SriRails::Application.routes.draw do
   root :to => 'home#index'
   resources :users
   resources :clubs
-  resources :requests
+  resources :requests do
+    collection do
+      get 'search'
+    end
+  end
   resources :transactions
   resources :votes
 

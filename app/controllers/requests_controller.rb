@@ -6,15 +6,14 @@ class RequestsController < ApplicationController
   end
 
   def create
-    request_attr = params[:request]
-    @request = Request.new
-    (params[:request])
+    @request = Request.create(params[:request])
   end
 
 
   def show
+  end
 
-
+  def search
   end
 
 end

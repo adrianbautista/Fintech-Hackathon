@@ -1,0 +1,13 @@
+$(function() {
+
+  $('#search_equity').click(findEquity);
+
+});
+
+function findEquity() {
+  var symbol = $('#ticker_symbol').val().toLowerCase();
+  var url = "http://dev.markitondemand.com/Api/Quote/jsonp?symbol=";
+  $.getJSON( url + symbol, function (data) {
+    console.log(data);
+  });
+}
