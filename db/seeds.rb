@@ -24,10 +24,15 @@ Transaction.create(club_id: club1.id, symbol: 'GOOG', price: 585.52, quantity: 1
 Transaction.create(club_id: club1.id, symbol: 'AAPL', price: 427.41, quantity: 20, date: Date.new(2012,1,23))
 Transaction.create(club_id: club1.id, symbol: 'VMW', price: 86.00, quantity: 60, date: Date.new(2012,1,23))
 Transaction.create(club_id: club1.id, symbol: 'CTSH', price: 70.61, quantity: 40, date: Date.new(2012,1,23))
-
+# $22387.8 sum of stocks
+# $30,000 cash - 22387.8 = $7612.2 cash balance
+Transaction.create(club_id: club1.id, symbol: 'USD', price: 1, quantity: 7612.2, date: Date.new(2012,1,23))
 Transaction.create(club_id: club2.id, symbol: 'V', price: 99.60, quantity: 30, date: Date.new(2012,1,23))
 Transaction.create(club_id: club2.id, symbol: 'INTU', price: 57.41, quantity: 30, date: Date.new(2012,1,23))
 Transaction.create(club_id: club2.id, symbol: 'RDN', price: 2.97, quantity: 3000, date: Date.new(2012,1,23))
+#sum 13620.3
+# 20,000 - 13620.3 = 6379.7
+Transaction.create(club_id: club2.id, symbol: 'USD', price: 1, quantity: 6379.7, date: Date.new(2012,1,23))
 
 request1 = Request.create(club_id: club1.id, date: Date.new(2013,1,24), price: 750, quantity: -10, symbol: 'GOOG', user_id: 2, message: 'Future of technology', status: 'pending' )
 request3 = Request.create(club_id: club1.id, date: Date.new(2013,1,20), price: 100, quantity: 10, symbol: 'C', user_id: 2, message: 'Wall street is back', status: 'pending' )
