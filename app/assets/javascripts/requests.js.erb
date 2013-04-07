@@ -5,6 +5,7 @@ $(function() {
 });
 
 function findEquity() {
+  alert('hay');
   var symbol = $('#ticker_symbol').val().toLowerCase();
   var url = "http://dev.markitondemand.com/Api/Quote/jsonp?symbol=";
   $.getJSON( url + symbol, function (data) {

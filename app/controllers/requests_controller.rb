@@ -7,8 +7,11 @@ class RequestsController < ApplicationController
 
   def create
     @request = Request.create(params[:request])
+    Club.find(@request.club_id).users.each do |user|
+      Vote.create(request_id: @request.id, user_id: user.id, club_id: @request.club_id)
+    end
+    redirect_to club_path(@request.club)
   end
-
 
   def show
   end
