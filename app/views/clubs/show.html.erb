@@ -1,63 +1,126 @@
-<h2>Club Name: <%= @club.name %></h2>
-
-<div class='club_invested'>
-  <h3>Members</h3>
-  <strong><span class='tre'>Name</span><span class='tre'>Percentage</span><span class='tre money'>Value</span></strong>
-  <ul>
-    <% @members.each do |m| %>
-      <li><span class='tre'><%= m.name %></span><span class='tre'><%= number_to_percentage(m.ownership(@club), :precision => 1) %></span><span class='tre money'><%= number_to_currency(m.total_deposits(@club)) %></span></li>
-    <% end %>
-  </ul>
-</div>
-<div class='club_requests'>
-  <h3>Make a Request</h3>
-  <%= link_to 'Request', new_request_path, class: "small button", id: "graph_it"  %>
-</div>
-<!-- <div class='clearfix'></div> -->
-<div class='club_value'>
-  <h3><%= 'Pending Votes' if @votes.present? %></h3>
-  <ul>
-    <% @votes.each do |v| %>
-      <li>
-        <div class='quads rity'><%= v.request.symbol %></div>
-        <div class='quads rity'><%= v.request.quantity %></div>
-        <div class='quads rity'><%= number_to_currency(v.request.price) %></div>
-        <%= button_tag :accept, id: v.id, class: 'accept tiny button success' %>
-        <%= button_tag :decline , id: v.id, class: 'decline tiny button alert' %>
-      </li>
-    <% end %>
-  </ul>
-</div>
-<div class='clearfix'></div>
-
-<div class='club_invested'>
-  <h3>Invested Capital</h3>
-      <strong><span class='tre'>Date</span><span class='tre'>Name</span><span class='tre money'>Amount</span></strong>
-
-  <ul>
-    <% @deposits.each do |d| %>
-      <li>
-        <span class='tre'><%= d.date %></span>
-        <span class='tre'><%= d.user.name %></span>
-        <span class='tre money'><%= number_to_currency(d.amount) %></span>
-      </li>
-    <% end %>
-    <li>
-      <span class='tre'></span>
-      <span class='tre'><strong>Total</strong></span>
-      <span class='tre money'><strong><%= number_to_currency(@total_invested) %></strong></span>
-    </li>
-  </ul>
-  <div>
-    <%= form_tag('/deposits') do %>
-      <%= text_field_tag 'amount', '', :id => 'deposit' %>
-      <%= hidden_field_tag 'club_id', @club.id %>
-      <%= submit_tag 'Contribute', :class => 'small button', :id => 'contribute' %>
-    <% end %>
+<div class="row">
+  <div class="large-12 columns">
+    <h2><%= @club.name.upcase %></h2>    
   </div>
 </div>
+
+<div class="row">
+  <div class="large-6 columns">
+    <h3 class="submarine">MEMBERS</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Percentage</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @members.each do |m| %>
+          <tr>
+            <td><%= m.name %></td>
+            <td><%= number_to_percentage(m.ownership(@club), :precision => 1) %></td>
+            <td><%= number_to_currency(m.total_deposits(@club)) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="large-6 columns">
+    <% if @votes.present? %>
+    <h3 class="submarine">PENDING VOTE</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Symbol</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Yay</th>
+          <th>Nay</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @votes.each do |v| %>
+          <tr>
+            <td><%= v.request.symbol %></td>
+            <td><%= v.request.quantity %></td>
+            <td><%= v.request.price %></td>
+            <td><%= button_tag :accept, id: v.id, class: 'accept tiny button success' %></td>
+            <td><%= button_tag :decline , id: v.id, class: 'decline tiny button alert' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% end %>
+    <h3 class="submarine">MAKE A REQUEST</h3>
+    <%= link_to 'Request', new_request_path, class: "small button", id: "graph_it"  %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-6 columns">
+    <h3 class="submarine">INVESTED CAPITAL</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>User</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @deposits.each do |d| %>
+          <tr>
+            <td><%= d.date %></td>
+            <td><%= link_to d.user.name, d.user %></td>
+            <td><%= number_to_currency(d.amount) %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td></td>
+          <td><h4>TOTAL</h4></td>
+          <td><%= number_to_currency(@total_invested) %></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="large-12 columns">
+        <div class="row collapse">
+          <%= form_tag('/deposits') do %>
+            <div class="small-2 columns">
+              <span class="prefix">USD &#36;</span>
+            </div>
+            <div class="small-8 columns">
+              <%= hidden_field_tag 'club_id', @club.id %>
+              <%= text_field_tag 'amount' %>
+            </div>
+            <div class="small-2 columns">
+              <%= submit_tag 'Contribute', :class => 'button prefix' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="large-6 columns">
+    <h3>CLUB HOLDINGS</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Security</th>
+          <th>Quantity</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
+  </div>
+</div>
+
 <div class='club_value'>
-  <h3>Club Holdings</h3>
+  
   <div id="holdings_list">
     <strong><div class='tre'>Security</div>
     <div class='tre'>Quantity</div>
@@ -68,7 +131,9 @@
           <div class='tre'><%= k %></div>
           <div class='tre rity'><%= number_to_currency(v) %></div>
         </li>
+
       <% end %>
+      <li>TOTAL VALUE HERE</li>
     </ul>
   </div>
   <%= content_tag :div, "", id: "holdings_view", data: {holdings: @holdings } %>
@@ -78,8 +143,19 @@
 </div>
 <div class='clearfix'></div>
 <h3>Performance</h3>
+<<<<<<< HEAD
 
 charts here
+=======
+<%= @big_graph %>
+
+<div id="area-example"></div>
+
+>>>>>>> d154170a80aa8959ca9036c0cf213ad9c7c3c45d
 
 <%= @big_graph %>
 
+<<<<<<< HEAD
+=======
+</script>
+>>>>>>> d154170a80aa8959ca9036c0cf213ad9c7c3c45d

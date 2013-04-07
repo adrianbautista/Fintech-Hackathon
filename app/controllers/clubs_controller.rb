@@ -56,6 +56,7 @@ class ClubsController < ApplicationController
       @holdings << holding
     end
 
+
     # @pie=[@holdings]
     # @holdings.each do |h|
     #   @pie << h 
@@ -70,10 +71,26 @@ class ClubsController < ApplicationController
     #   @portfolio_list << YahooFinance::get_quotes(YahooFinance::StandardQuote, ticker)[ticker].lastTrade
     # end
 
+    @portfolio_list = []
+    @portfolio_wo_USD1 = @club.portfolio
+    @portfolio_wo_USD1.delete('USD')
+    @portfolio_wo_USD1.each do |ticker|
+      @portfolio_list << YahooFinance::get_quotes(YahooFinance::StandardQuote, ticker)[ticker].lastTrade
+    end
+    @begin = Transaction.where(club_id: @club.id).map(&:price)
+
+    @percent = []
+    count = 0
+    @portfolio_list.each do |ending|
+      start = @begin[count]
+      @percent << ( (ending / start) - 1 )
+      count += 1
+    end
+
+
     @members = @club.members
 
     @votes = @club.votes.where(:club_id => @club.id).where(:value => nil).where(:user_id => current_user.id)
-
 
     # @graph_hash = {}
     # @portfolio_wo_USD = @club.portfolio
@@ -97,21 +114,18 @@ class ClubsController < ApplicationController
 
     # {"GOOG"=>5855.2, "AAPL"=>8548.2, "VMW"=>5160.0, "CTSH"=>2824.4, "USD"=>18612.2}
 
-#     YahooFinance::get_HistoricalQuotes_days( 'YHOO', 30 ) do |hq|
-#   puts "#{hq.symbol},#{hq.date},#{hq.open},#{hq.high},#{hq.low},"
-#      + "#{hq.close},#{hq.volume},#{hq.adjClose}"
-# end
-# # Getting t
-    # @big_graph = {}
-    # @portfolio_wo_USD = @holdings
-    # @portfolio_wo_USD.delete('USD')
-    # @portfolio_wo_USD.each do |symbol, worth|
-    #   equity = {}
-    #   YahooFinance::get_HistoricalQuotes_days( symbol.downcase, 30 ) do |hq|
-    #     equity[hq.date] = hq.close
-    #   end
-    #   @big_graph[symbol] = equity
-    # end
-
+    @big_graph = {}
+    @portfolio_wo_USD = @club.holdings
+    @portfolio_wo_USD.delete('USD')
+    @portfolio_wo_USD.each do |symbol, worth|
+      equity = {}
+      cash = {}
+      YahooFinance::get_HistoricalQuotes_days( symbol.downcase, 30 ) do |hq|
+        equity[hq.date] = hq.close
+        cash[hq.date] = 1
+      end
+      @big_graph[symbol] = equity
+      @big_graph['USD'] = cash
+    end
   end
 end
