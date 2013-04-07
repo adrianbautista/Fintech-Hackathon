@@ -1,25 +1,67 @@
-<h2>Club Name: <%= @club.name %></h2>
+<div class="row">
+  <div class="large-12 columns">
+    <h2><%= @club.name.upcase %></h2>    
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-6 columns">
+    <h3 class="submarine">MEMBERS</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Percentage</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @members.each do |m| %>
+          <tr>
+            <td><%= m.name %></td>
+            <td><%= number_to_percentage(m.ownership(@club), :precision => 1) %></td>
+            <td><%= number_to_currency(m.total_deposits(@club)) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="large-6 columns">
+    <h3 class="submarine">PENDING VOTE</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Symbol</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Yay</th>
+          <th>Nay</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @votes.each do |v| %>
+          <tr>
+            <td><%= v.request.symbol %></td>
+            <td><%= v.request.quantity %></td>
+            <td><%= v.request.price %></td>
+            <td><%= button_tag :accept, id: v.id, class: 'accept tiny button success' %></td>
+            <td><%= button_tag :decline , id: v.id, class: 'decline tiny button alert' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <div class='club_invested'>
-  <h3>Members</h3>
   <strong><span class='tre'>Name</span><span class='tre'>Percentage</span><span class='tre money'>Value</span></strong>
   <ul>
-    <% @members.each do |m| %>
-      <li><span class='tre'><%= m.name %></span><span class='tre'><%= number_to_percentage(m.ownership(@club), :precision => 1) %></span><span class='tre money'><%= number_to_currency(m.total_deposits(@club)) %></span></li>
-    <% end %>
+    
+
   </ul>
 </div>
 <div class='club_value'>
-  <h3>Pending Votes</h3>
-  <% @votes.each do |v| %>
-    <div class='row'>
-      <%= v.request.symbol %>
-      <%= v.request.quantity %>
-      <%= v.request.price %>
-      <%= button_tag :accept, id: v.id, class: 'accept tiny button success' %>
-      <%= button_tag :decline , id: v.id, class: 'decline tiny button alert' %>
-    </div>
-  <% end %>
+ 
 </div>
 <div class='clearfix'></div>
 

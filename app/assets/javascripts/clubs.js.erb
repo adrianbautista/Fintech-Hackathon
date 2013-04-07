@@ -6,7 +6,7 @@ $(function(){
 
 function AcceptRequest() {
   var id = this.id;
-  var row = $(this).parent();
+  var row = $(this).parent().parent();
   $.ajax({
     type: 'PUT',
     url: ('/votes/' + id),
@@ -19,7 +19,7 @@ function AcceptRequest() {
 
 function DeclineRequest() {
   var id = this.id;
-  var row = $(this).parent();
+  var row = $(this).parent().parent();
   $.ajax({
     type: 'PUT',
     url: ('/votes/' + id),
