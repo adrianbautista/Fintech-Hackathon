@@ -15,14 +15,22 @@ class ClubsController < ApplicationController
     @deposit.user_id = current_user.id
     @deposit.club_id = @club.id
     @deposit.date = Date.today
-    if @deposit.save
+    @transaction = Transaction.new
+    @transaction.club_id = @club.id
+    @transaction.price = 1
+    @transaction.quantity = params[:deposit][:amount]
+    @transaction.symbol = "USD"
+    @transaction.date = Date.today
+
+    if @deposit.save && @transaction.save
       redirect_to user_path(current_user), notice: "Club #{@club.name} created!"
     else
       render 'new'
     end
   end
 
-  def join
+  def join 
+
 
 
   end
@@ -38,6 +46,13 @@ class ClubsController < ApplicationController
     end
 
     @members = @deposits.collect(&:user).uniq
+
+    @club.transactions.each do |t|
+
+    end
+
+
+
   end
 
 end

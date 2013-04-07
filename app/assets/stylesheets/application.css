@@ -14,22 +14,33 @@
  */
 
 .club_invested{
-  width: 50%;
+  width: 45%;
   float: left;
-  padding-right: 10px;
+  margin-right: 10px;
 }
 .tre{
   display: inline-block;
-  width: 33%;
+  width: 30%;
+}
+.money{
+  text-align: right;
 }
 .club_value{
   width: 50%;
   float: left;
-  padding-left: 10px;
+  margin-left: 10px;
 }
 
 li{
   list-style-type: none;
+}
+
+#deposit{
+  width: 250px;
+  float: left;
+}
+#contribute{
+  float: right;
 }
 
 .clearfix{
