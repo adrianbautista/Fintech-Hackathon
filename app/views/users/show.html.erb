@@ -5,17 +5,24 @@
     </h2>
    </div>
    <div class="large-9 columns" style="text-align: right">
-     <h2>WELCOME <%= current_user.name.upcase %></h2>
+     <h2 class="username">WELCOME <%= current_user.name.upcase %></h2>
+     <%= image_tag((current_user.image), class: 'profile-pic') %>
    </div>
 </div>
 
+<div class="row">
+  <div class="large-12 columns">
+    <%= link_to "Create a new club", new_club_path, class: 'button' %>  
+  </div>
+</div>
 
-<%= link_to "Create a new club", new_club_path %>
-
-<!-- I should see links to join, create, or view a club -->
-<h3>Clubs</h3>
-<ul>
-<% @clubs.each do |club| %>
-  <li><%= link_to club.name, club %></li>
-<% end %>
-</ul>
+<div class="row">
+  <div class="large-12 columns">
+    <h3>CLUBS</h3>
+    <ul>
+      <% @clubs.each do |club| %>
+        <h3 class="subheader"><%= link_to club.name, club %></h3>
+      <% end %>
+    </ul>
+  </div>
+</div>
