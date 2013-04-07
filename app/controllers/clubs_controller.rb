@@ -29,7 +29,7 @@ class ClubsController < ApplicationController
     end
   end
 
-  def join 
+  def join
 
 
 
@@ -56,7 +56,8 @@ class ClubsController < ApplicationController
         @holdings[t.symbol] = ( t.quantity * t.price )
       end
     end
-
+    # FIX THIS SHITS!!!
+    @requests = @club.requests.where(: nil)
   end
 
 end

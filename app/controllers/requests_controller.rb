@@ -9,7 +9,6 @@ class RequestsController < ApplicationController
     @request = Request.create(params[:request])
   end
 
-
   def show
   end
 
