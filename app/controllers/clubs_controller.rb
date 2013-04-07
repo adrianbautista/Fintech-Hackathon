@@ -36,6 +36,8 @@ class ClubsController < ApplicationController
   end
 
   def show
+    @last_quote = YahooFinance::get_quotes(YahooFinance::StandardQuote, 'AAPL')['AAPL'].lastTrade
+
     @user = User.where(name: current_user.name).order("created_at").first
     @club = Club.find(params[:id])
     @deposits = @club.deposits
@@ -52,6 +54,13 @@ class ClubsController < ApplicationController
         @holdings[t.symbol] = ( t.quantity * t.price )
       end
     end
+    @portfolio_list = []
+    @portfolio_wo_USD1 = @club.portfolio
+    @portfolio_wo_USD1.delete('USD')
+    @portfolio_wo_USD1.each do |ticker|
+      @portfolio_list << YahooFinance::get_quotes(YahooFinance::StandardQuote, ticker)[ticker].lastTrade
+    end
+
     @votes = @club.votes.where(:club_id => @club.id).where(:value => nil).where(:user_id => current_user.id)
 
 
