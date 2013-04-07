@@ -71,23 +71,9 @@
       <% end %>
     </ul>
   </div>
-  <%= content_tag :div, "", id: "holdings_view", data: {holdings: @club.holdings} %>
+  <%= content_tag :div, "", id: "holdings_view", data: {holdings: @holdings} %>
 
 </div>
 <div class='clearfix'></div>
 <h3>Performance</h3>
 charts here
-
-
-<script>
-new Morris.Donut({
-  element: 'holdings_view',
-  data: [
-    {label: "GOOG", value: 5855},
-    {label: "AAPL", value: 8548},
-    {label: "VMW", value: 5160},
-    {label: "CTSH", value: 2824}
-  ]
-});
-
-</script>

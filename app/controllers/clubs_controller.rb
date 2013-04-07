@@ -13,7 +13,7 @@ class ClubsController < ApplicationController
   def create
     @club = Club.create(name: params[:club][:name])
     @deposit = Deposit.new(amount: params[:deposit][:amount])
-    @user = User.where(name: current_user.name).order("created_at").first
+    @user = current_user
 
     @deposit.user_id = @user.id
     @deposit.club_id = @club.id
@@ -36,9 +36,9 @@ class ClubsController < ApplicationController
   end
 
   def show
-    @last_quote = YahooFinance::get_quotes(YahooFinance::StandardQuote, 'AAPL')['AAPL'].lastTrade
+    # @last_quote = YahooFinance::get_quotes(YahooFinance::StandardQuote, 'AAPL')['AAPL'].lastTrade
 
-    @user = User.where(name: current_user.name).order("created_at").first
+    @user = current_user
     @club = Club.find(params[:id])
     @deposits = @club.deposits
     @total_invested = 0
@@ -46,26 +46,20 @@ class ClubsController < ApplicationController
       @total_invested += d.amount
     end
     @members = @deposits.collect(&:user).uniq
-<<<<<<< HEAD
-    @holdings = @club.holdings
-=======
     @holdings = {}
-    @club.transactions.each do |t|
-      if @holdings[t.symbol]
-        @holdings[t.symbol] += ( t.quantity * t.price )
-      else
-        @holdings[t.symbol] = ( t.quantity * t.price )
-      end
-    end
-    @portfolio_list = []
-    @portfolio_wo_USD = @club.portfolio
-    @portfolio_wo_USD.delete('USD')
-    @portfolio_wo_USD.each do |ticker|
-      @portfolio_list << YahooFinance::get_quotes(YahooFinance::StandardQuote, ticker)[ticker].lastTrade
+    @club.holdings.each do |symbol, value|
+      @holdings[:label] = symbol
+      @holdings[:value] = value
     end
 
-    binding.pry
->>>>>>> fb4779e8b955f65cdeee1650b8ef3ecc053289c7
+
+    # @portfolio_list = []
+    # @portfolio_wo_USD = @club.portfolio
+    # @portfolio_wo_USD.delete('USD')
+    # @portfolio_wo_USD.each do |ticker|
+    #   @portfolio_list << YahooFinance::get_quotes(YahooFinance::StandardQuote, ticker)[ticker].lastTrade
+    # end
+
     @votes = @club.votes.where(:club_id => @club.id).where(:value => nil).where(:user_id => current_user.id)
     # @graph_hash = {}
     # @portfolio_wo_USD = @club.portfolio

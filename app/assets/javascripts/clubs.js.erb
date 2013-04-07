@@ -2,7 +2,6 @@ $(function(){
   $('button.accept').click(AcceptRequest);
   $('button.decline').click(DeclineRequest);
   HoldingsPie();
-  OwnershipPie();
 });
 
 function AcceptRequest() {
@@ -34,11 +33,11 @@ function DeclineRequest() {
 function HoldingsPie() {
 
 var data = $('#holdings_view').data('holdings')
-var jsonObj = $.parseJSON(data);
+// var jsonObj = $.parseJSON(data);
 
 new Morris.Donut({
   element: 'holdings_view',
-  data: jsonObj
+  data: [data]
 });
 
 }
