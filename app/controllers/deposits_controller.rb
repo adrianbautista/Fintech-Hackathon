@@ -12,8 +12,14 @@ class DepositsController < ApplicationController
     @deposit.user_id = current_user.id
     @deposit.club_id = @club.id
     @deposit.date = Date.today
+    @transaction = Transaction.new
+    @transaction.club_id = @club.id
+    @transaction.price = 1
+    @transaction.quantity = params[:amount]
+    @transaction.symbol = "USD"
+    @transaction.date = Date.today
 
-    if @deposit.save
+    if @deposit.save && @transaction.save
       redirect_to club_path(@club), notice: "Deposit added!"
     else
       redirect_to club_path(@club), notice: "Deposit failed!"
