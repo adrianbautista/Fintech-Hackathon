@@ -45,13 +45,13 @@ class ClubsController < ApplicationController
     @deposits.each do |d|
       @total_invested += d.amount
     end
+
     @members = @deposits.collect(&:user).uniq
     @holdings = {}
     @club.holdings.each do |symbol, value|
       @holdings[:label] = symbol
       @holdings[:value] = value
     end
-
 
     # @portfolio_list = []
     # @portfolio_wo_USD = @club.portfolio
@@ -60,7 +60,11 @@ class ClubsController < ApplicationController
     #   @portfolio_list << YahooFinance::get_quotes(YahooFinance::StandardQuote, ticker)[ticker].lastTrade
     # end
 
+    @members = @club.members
+
     @votes = @club.votes.where(:club_id => @club.id).where(:value => nil).where(:user_id => current_user.id)
+
+
     # @graph_hash = {}
     # @portfolio_wo_USD = @club.portfolio
     # @portfolio_wo_USD.delete('USD')
@@ -80,5 +84,24 @@ class ClubsController < ApplicationController
     #     @graph_hash[ticker.to_sym] << info
     #   end
     # end
+
+    # {"GOOG"=>5855.2, "AAPL"=>8548.2, "VMW"=>5160.0, "CTSH"=>2824.4, "USD"=>18612.2}
+
+#     YahooFinance::get_HistoricalQuotes_days( 'YHOO', 30 ) do |hq|
+#   puts "#{hq.symbol},#{hq.date},#{hq.open},#{hq.high},#{hq.low},"
+#      + "#{hq.close},#{hq.volume},#{hq.adjClose}"
+# end
+# # Getting t
+    @big_graph = {}
+    @portfolio_wo_USD = @holdings
+    @portfolio_wo_USD.delete('USD')
+    @portfolio_wo_USD.each do |symbol, worth|
+      equity = {}
+      YahooFinance::get_HistoricalQuotes_days( symbol.downcase, 30 ) do |hq|
+        equity[hq.date] = hq.close
+      end
+      @big_graph[symbol] = equity
+    end
+
   end
 end

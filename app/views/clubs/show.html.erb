@@ -11,7 +11,7 @@
 </div>
 <div class='club_requests'>
   <h3>Make a Request</h3>
-  <%= link_to 'Request', new_request_path, class: "large", id: "graph_it"  %>
+  <%= link_to 'Request', new_request_path, class: "small button", id: "graph_it"  %>
 </div>
 <!-- <div class='clearfix'></div> -->
 <div class='club_value'>
@@ -76,4 +76,22 @@
 </div>
 <div class='clearfix'></div>
 <h3>Performance</h3>
+<<<<<<< HEAD
 charts here
+=======
+<%= @big_graph %>
+
+
+<script>
+new Morris.Donut({
+  element: 'holdings_view',
+  data: [
+    {label: "GOOG", value: 5855},
+    {label: "AAPL", value: 8548},
+    {label: "VMW", value: 5160},
+    {label: "CTSH", value: 2824}
+  ]
+});
+
+</script>
+>>>>>>> 20aa6e5ecbd2093abb93c14ff0991835cdf53916
