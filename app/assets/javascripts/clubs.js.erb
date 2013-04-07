@@ -1,6 +1,7 @@
 $(function(){
   $('button.accept').click(AcceptRequest);
   $('button.decline').click(DeclineRequest);
+  $('#graph_it').click(GraphIt);
 });
 
 function AcceptRequest() {
@@ -14,16 +15,17 @@ function AcceptRequest() {
       row.hide();
     }
   });
-  // $(document).ajaxComplete(function() {
-  //   console.log(this)
-  //   $(this).parent().hide();
-  // });
-  // .done(function(){
-  //
-  //
-  // });
 }
 
 function DeclineRequest() {
-
+  var id = this.id;
+  var row = $(this).parent();
+  $.ajax({
+    type: 'PUT',
+    url: ('/votes/' + id),
+    data: { value: false },
+    complete: function() {
+      row.hide();
+    }
+  });
 }

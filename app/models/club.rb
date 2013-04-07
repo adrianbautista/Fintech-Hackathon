@@ -18,4 +18,8 @@ class Club < ActiveRecord::Base
     self.users.uniq
   end
 
+  def portfolio
+    self.transactions.collect(&:symbol).uniq
+  end
+
 end

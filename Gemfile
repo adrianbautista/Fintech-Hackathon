@@ -7,7 +7,7 @@ gem 'pg'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'faraday'
+gem 'httparty'
 gem 'finance'
 
 # Gems used only for assets and not required
