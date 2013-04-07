@@ -9,6 +9,11 @@
     <% end %>
   </ul>
 </div>
+<div class='club_requests'>
+  <h3>Make a Request</h3>
+  <%= link_to 'Request', new_request_path %>
+</div>
+<div class='clearfix'></div>
 <div class='club_value'>
   <h3>Pending Votes</h3>
   <% @votes.each do |v| %>
@@ -60,15 +65,24 @@
       <% end %>
     </ul>
   </div>
-  <div id="holdings_view">
+  <div id="holdings_view" style="height: 250px;">
 
   </div>
 </div>
 <div class='clearfix'></div>
-<div class='club_requests'>
-  <h3>Make a Request</h3>
-  <%= link_to 'Request', new_request_path %>
-</div>
-<div class='clearfix'></div>
 <h3>Performance</h3>
 charts here
+
+
+<script>
+new Morris.Donut({
+  element: 'holdings_view',
+  data: [
+    {label: "GOOG", value: 5855},
+    {label: "AAPL", value: 8548},
+    {label: "VMW", value: 5160},
+    {label: "CTSH", value: 2824}
+  ]
+});
+
+</script>
