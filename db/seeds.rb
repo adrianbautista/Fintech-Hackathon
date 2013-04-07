@@ -5,10 +5,10 @@ Transaction.delete_all
 Vote.delete_all
 Request.delete_all
 
-user2 = User.create(email: 'chris@gmail.com', name: 'Chris Goodmacher', provider: 'facebook', uid: '1235', password: 'password', image: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/c127.37.466.466/s160x160/269848_708986977256_5823215_n.jpg' )
-user3 = User.create(email: 'jon@gmail.com', name: 'Jon Ku', provider: 'facebook', uid: '1236', password: 'password', image: 'https://profile-b.xx.fbcdn.net/hprofile-snc7/c46.46.569.569/s160x160/578031_10100761306312859_528556489_n.jpg' )
-user1 = User.create(email: 'thomas@gmail.com', name: 'Thomas Yang', provider: 'facebook', uid: '1238', password: 'password', image: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/c42.42.532.532/s160x160/600219_10100238761477045_985486861_n.jpg' )
-user4 = User.create(email: 'adrian@gmail.com', name: 'Adrian Bautista', provider: 'facebook', uid: '1239', password: 'password', image: 'https://sphotos-b.xx.fbcdn.net/hphotos-ash4/483685_10152541193055724_1577283735_n.jpg' )
+user2 = User.create(email: 'chris@gmail.com', name: 'Ryan Good', provider: 'facebook', uid: '1235', password: 'password', image: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/c127.37.466.466/s160x160/269848_708986977256_5823215_n.jpg' )
+user3 = User.create(email: 'jon@gmail.com', name: 'John Chan', provider: 'facebook', uid: '1236', password: 'password', image: 'https://profile-b.xx.fbcdn.net/hprofile-snc7/c46.46.569.569/s160x160/578031_10100761306312859_528556489_n.jpg' )
+user1 = User.create(email: 'thomas@gmail.com', name: 'Mike Doe', provider: 'facebook', uid: '1238', password: 'password', image: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/c42.42.532.532/s160x160/600219_10100238761477045_985486861_n.jpg' )
+user4 = User.create(email: 'adrian@gmail.com', name: 'Lori McKin', provider: 'facebook', uid: '1239', password: 'password', image: 'https://sphotos-b.xx.fbcdn.net/hphotos-ash4/483685_10152541193055724_1577283735_n.jpg' )
 
 club1 = Club.create(name: 'Huntington Management')
 club2 = Club.create(name: 'GA')
