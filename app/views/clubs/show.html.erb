@@ -42,7 +42,6 @@
       <span class='tre money'><strong><%= number_to_currency(@total_invested) %></strong></span>
     </li>
   </ul>
-<%= number_to_currency(@total_invested) %>
   <div>
     <%= form_tag('/deposits') do %>
       <%= text_field_tag 'amount', '', :id => 'deposit' %>
