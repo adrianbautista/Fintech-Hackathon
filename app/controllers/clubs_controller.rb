@@ -53,12 +53,21 @@ class ClubsController < ApplicationController
       @holdings[:value] = value
     end
 
-    # @portfolio_list = []
-    # @portfolio_wo_USD = @club.portfolio
-    # @portfolio_wo_USD.delete('USD')
-    # @portfolio_wo_USD.each do |ticker|
-    #   @portfolio_list << YahooFinance::get_quotes(YahooFinance::StandardQuote, ticker)[ticker].lastTrade
-    # end
+    @portfolio_list = []
+    @portfolio_wo_USD1 = @club.portfolio
+    @portfolio_wo_USD1.delete('USD')
+    @portfolio_wo_USD1.each do |ticker|
+      @portfolio_list << YahooFinance::get_quotes(YahooFinance::StandardQuote, ticker)[ticker].lastTrade
+    end
+    @begin = Transaction.where(club_id: @club.id).map(&:price)
+
+    @percent = []
+    count = 0
+    @portfolio_list.each do |ending|
+      start = @begin[count]
+      @percent << ( (ending / start) - 1 )
+      count += 1
+    end
 
     @members = @club.members
 
@@ -91,11 +100,14 @@ class ClubsController < ApplicationController
     @portfolio_wo_USD.delete('USD')
     @portfolio_wo_USD.each do |symbol, worth|
       equity = {}
+      cash = {}
       YahooFinance::get_HistoricalQuotes_days( symbol.downcase, 30 ) do |hq|
         equity[hq.date] = hq.close
+        cash[hq.date] = 1
       end
       @big_graph[symbol] = equity
+      @big_graph['USD'] = cash
     end
-
+    # binding.pry
   end
 end
