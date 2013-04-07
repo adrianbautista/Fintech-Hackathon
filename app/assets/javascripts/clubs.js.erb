@@ -3,4 +3,27 @@ $(function(){
   $('button.decline').click(DeclineRequest);
 });
 
-function
+function AcceptRequest() {
+  var id = this.id;
+  var row = $(this).parent();
+  $.ajax({
+    type: 'PUT',
+    url: ('/votes/' + id),
+    data: { value: true },
+    complete: function() {
+      row.hide();
+    }
+  });
+  // $(document).ajaxComplete(function() {
+  //   console.log(this)
+  //   $(this).parent().hide();
+  // });
+  // .done(function(){
+  //
+  //
+  // });
+}
+
+function DeclineRequest() {
+
+}

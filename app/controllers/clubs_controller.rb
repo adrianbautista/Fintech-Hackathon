@@ -23,7 +23,7 @@ class ClubsController < ApplicationController
     @transaction.date = Date.today
 
     if @deposit.save && @transaction.save
-      redirect_to user_path(current_user), notice: "Club #{@club.name} created!"
+      redirect_to club_path(@club), notice: "Club #{@club.name} created!"
     else
       render 'new'
     end
@@ -56,7 +56,7 @@ class ClubsController < ApplicationController
         @holdings[t.symbol] = ( t.quantity * t.price )
       end
     end
-    @votes = current_user.votes.where(:club_id => @club.id)
+    @votes = current_user.votes.where(:club_id => @club.id).where(:value => nil)
   end
 
 end

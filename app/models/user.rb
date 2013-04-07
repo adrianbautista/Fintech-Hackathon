@@ -57,4 +57,19 @@ class User < ActiveRecord::Base
     end
     user
   end
+
+
+  def ownership(club)
+    total_deposits = club.deposits.collect(&:amount).sum
+    my_deposits = Deposit.where(user_id: id, club_id: club.id).collect(&:amount).sum  
+
+    my_percent = (my_deposits / total_deposits) * 100
+
+    return my_percent
+  end  
+
+
+  def total_deposits(club)
+    my_deposits = Deposit.where(user_id: id, club_id: club.id).collect(&:amount).sum 
+  end
 end
