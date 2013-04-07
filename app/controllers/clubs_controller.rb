@@ -44,14 +44,7 @@ class ClubsController < ApplicationController
       @total_invested += d.amount
     end
     @members = @deposits.collect(&:user).uniq
-    @holdings = {}
-    @club.transactions.each do |t|
-      if @holdings[t.symbol]
-        @holdings[t.symbol] += ( t.quantity * t.price )
-      else
-        @holdings[t.symbol] = ( t.quantity * t.price )
-      end
-    end
+    @holdings = @club.holdings
     @votes = @club.votes.where(:club_id => @club.id).where(:value => nil).where(:user_id => current_user.id)
     # @graph_hash = {}
     # @portfolio_wo_USD = @club.portfolio

@@ -70,12 +70,9 @@
         </li>
       <% end %>
     </ul>
-
-    <button class='large' id='graph_it'>Graph it</button>
   </div>
-  <div id="holdings_view" style="height: 250px;">
+  <%= content_tag :div, "", id: "holdings_view", data: {holdings: @club.holdings} %>
 
-  </div>
 </div>
 <div class='clearfix'></div>
 <h3>Performance</h3>

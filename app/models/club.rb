@@ -23,4 +23,26 @@ class Club < ActiveRecord::Base
     self.transactions.collect(&:symbol).uniq
   end
 
+
+  def holdings
+    @holdings = {}
+    self.transactions.each do |t|
+      if @holdings[t.symbol]
+        @holdings[t.symbol] += ( t.quantity * t.price )
+      else
+        @holdings[t.symbol] = ( t.quantity * t.price )
+      end
+    end
+    return @holdings
+  end
+  # (start.to_date..Date.today).map do |date|
+  #   {
+  #     purchased_at: date,
+  #     price: total_prices[date] || 0,
+  #     shipping_price: shipping_prices[date] || 0,
+  #     download_price: download_prices[date] || 0
+  #   }
+  # end
+
+
 end
