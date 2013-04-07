@@ -19,9 +19,9 @@
   <ul>
     <% @votes.each do |v| %>
       <li>
-        <%= v.request.symbol %>
-        <%= v.request.quantity %>
-        <%= v.request.price %>
+        <div class='quads'><%= v.request.symbol %></div>
+        <div class='quads'><%= v.request.quantity %></div>
+        <div class='quads'><%= number_to_currency(v.request.price) %></div>
         <%= button_tag :accept, id: v.id, class: 'accept tiny button success' %>
         <%= button_tag :decline , id: v.id, class: 'decline tiny button alert' %>
       </li>

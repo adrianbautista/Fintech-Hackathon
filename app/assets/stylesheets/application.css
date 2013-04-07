@@ -24,6 +24,11 @@
   display: inline-block;
   width: 30%;
 }
+.quads {
+  display: inline-block;
+  width: 15%;
+}
+
 .money{
   text-align: right;
 }
