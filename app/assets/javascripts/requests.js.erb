@@ -1,0 +1,21 @@
+$(function() {
+
+  $('#search_equity').click(findEquity);
+
+});
+
+function findEquity() {
+  $('#search_result').empty();
+  var div = $('<div>');
+  var p = $('<p>');
+  var h1 = $('<h1>');
+  var symbol = $('#ticker_symbol').val().toLowerCase();
+  var url = "http://dev.markitondemand.com/Api/Quote/jsonp?symbol=";
+  $.getJSON( url + symbol +"&callback=?", function (data) {
+    console.log(data);
+    p.html(data["Data"]["LastPrice"]);
+    h1.html(data["Data"]["Name"]);
+    div.append(h1).append(p);
+    $('#search_result').append(div);
+  });
+}

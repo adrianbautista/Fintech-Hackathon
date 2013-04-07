@@ -1,0 +1,31 @@
+$(function(){
+  $('button.accept').click(AcceptRequest);
+  $('button.decline').click(DeclineRequest);
+  // $('#graph_it').click(GraphIt);
+});
+
+function AcceptRequest() {
+  var id = this.id;
+  var row = $(this).parent();
+  $.ajax({
+    type: 'PUT',
+    url: ('/votes/' + id),
+    data: { value: true },
+    complete: function() {
+      row.hide();
+    }
+  });
+}
+
+function DeclineRequest() {
+  var id = this.id;
+  var row = $(this).parent();
+  $.ajax({
+    type: 'PUT',
+    url: ('/votes/' + id),
+    data: { value: false },
+    complete: function() {
+      row.hide();
+    }
+  });
+}

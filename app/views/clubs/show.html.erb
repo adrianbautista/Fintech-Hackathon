@@ -1,0 +1,74 @@
+<h2>Club Name: <%= @club.name %></h2>
+
+<div class='club_invested'>
+  <h3>Members</h3>
+  <strong><span class='tre'>Name</span><span class='tre'>Percentage</span><span class='tre money'>Value</span></strong>
+  <ul>
+    <% @members.each do |m| %>
+      <li><span class='tre'><%= m.name %></span><span class='tre'><%= number_to_percentage(m.ownership(@club), :precision => 1) %></span><span class='tre money'><%= number_to_currency(m.total_deposits(@club)) %></span></li>
+    <% end %>
+  </ul>
+</div>
+<div class='club_value'>
+  <h3>Pending Votes</h3>
+  <% @votes.each do |v| %>
+    <div class='row'>
+      <%= v.request.symbol %>
+      <%= v.request.quantity %>
+      <%= v.request.price %>
+      <%= button_tag :accept, id: v.id, class: 'accept tiny button success' %>
+      <%= button_tag :decline , id: v.id, class: 'decline tiny button alert' %>
+    </div>
+  <% end %>
+</div>
+<div class='clearfix'></div>
+
+<button class='large' id='graph_it'>graph it</button>
+
+<div class='club_invested'>
+  <h3>Invested Capital</h3>
+      <strong><span class='tre'>Date</span><span class='tre'>Name</span><span class='tre money'>Amount</span></strong>
+
+  <ul>
+    <% @deposits.each do |d| %>
+      <li>
+        <span class='tre'><%= d.date %></span>
+        <span class='tre'><%= d.user.name %></span>
+        <span class='tre money'><%= number_to_currency(d.amount) %></span>
+      </li>
+    <% end %>
+    <li>
+      <span class='tre'></span>
+      <span class='tre'><strong>Total</strong></span>
+      <span class='tre money'><strong><%= number_to_currency(@total_invested) %></strong></span>
+    </li>
+  </ul>
+  <div>
+    <%= form_tag('/deposits') do %>
+      <%= text_field_tag 'amount', '', :id => 'deposit' %>
+      <%= hidden_field_tag 'club_id', @club.id %>
+      <%= submit_tag 'Contribute', :class => 'small button', :id => 'contribute' %>
+    <% end %>
+  </div>
+</div>
+<div class='club_value'>
+  <h3>Club Holdings</h3>
+  <div id="holdings_list">
+    <ul>
+      <% @holdings.each do |k,v| %>
+        <li><%= k %> - <%= number_to_currency(v) %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div id="holdings_view">
+
+  </div>
+</div>
+<div class='clearfix'></div>
+<div class='club_requests'>
+  <h3>Make a Request</h3>
+  <%= link_to 'Request', new_request_path %>
+</div>
+<div class='clearfix'></div>
+<h3>Performance</h3>
+charts here

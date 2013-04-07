@@ -13,5 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require raphael-min
+//= require morris
+//= require clubs
+//= require requests
 
 $(document).foundation();

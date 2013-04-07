@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="large-3 columns">
+    <h2>
+      DASHBOARD
+    </h2>
+   </div>
+   <div class="large-9 columns" style="text-align: right">
+     <h2>WELCOME <%= current_user.name.upcase %></h2>
+   </div>
+</div>
+
+
+<%= link_to "Create a new club", new_club_path %>
+
+<!-- I should see links to join, create, or view a club -->
+<h3>Clubs</h3>
+<ul>
+<% @clubs.each do |club| %>
+  <li><%= link_to club.name, club %></li>
+<% end %>
+</ul>

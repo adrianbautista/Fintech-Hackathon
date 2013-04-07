@@ -9,6 +9,42 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require fonts
+ *= require colors
  *= require foundation_and_overrides
  *= require build
  */
+
+.club_invested{
+  width: 45%;
+  float: left;
+  margin-right: 10px;
+}
+.tre {
+  display: inline-block;
+  width: 30%;
+}
+.money{
+  text-align: right;
+}
+.club_value{
+  width: 50%;
+  float: left;
+  margin-left: 10px;
+}
+
+li{
+  list-style-type: none;
+}
+
+#deposit{
+  width: 250px;
+  float: left;
+}
+#contribute{
+  float: right;
+}
+
+.clearfix{
+  clear: both;
+}

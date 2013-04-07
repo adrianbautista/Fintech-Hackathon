@@ -1,0 +1,17 @@
+<h2>New Request</h2>
+
+<%= text_field_tag :ticker_symbol %>
+<%= button_tag 'Search Equity', id: 'search_equity' %>
+
+<div id="search_result"></div>
+
+
+<%= form_for @request do |f| %>
+  Symbol: <%= f.text_field :symbol %>
+  Quantity: <%= f.number_field :quantity %>
+  Price: <%= f.number_field :price %>
+  Message: <%= f.text_area :message %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :club_id, value: @club_id %>
+  <%= f.submit  %>
+<% end %>
