@@ -71,24 +71,24 @@ class ClubsController < ApplicationController
     #   @portfolio_list << YahooFinance::get_quotes(YahooFinance::StandardQuote, ticker)[ticker].lastTrade
     # end
 
-    @portfolio_list = []
-    @portfolio_wo_USD1 = @club.portfolio
-    @portfolio_wo_USD1.delete('USD')
-    @portfolio_wo_USD1.each do |ticker|
-      @portfolio_list << YahooFinance::get_quotes(YahooFinance::StandardQuote, ticker)[ticker].lastTrade
-    end
-    @begin = Transaction.where(club_id: @club.id).map(&:price)
+    # @portfolio_list = []
+    # @portfolio_wo_USD1 = @club.portfolio
+    # @portfolio_wo_USD1.delete('USD')
+    # @portfolio_wo_USD1.each do |ticker|
+    #   @portfolio_list << YahooFinance::get_quotes(YahooFinance::StandardQuote, ticker)[ticker].lastTrade
+    # end
+    # @begin = Transaction.where(club_id: @club.id).map(&:price)
 
-    @percent = []
-    count = 0
-    @portfolio_list.each do |ending|
-      start = @begin[count]
-      @percent << ( (ending / start) - 1 )
-      count += 1
-    end
+    # @percent = []
+    # count = 0
+    # @portfolio_list.each do |ending|
+    #   start = @begin[count]
+    #   @percent << ( (ending / start) - 1 )
+    #   count += 1
+    # end
 
 
-    @members = @club.members
+    # @members = @club.members
 
     @votes = @club.votes.where(:club_id => @club.id).where(:value => nil).where(:user_id => current_user.id)
 
