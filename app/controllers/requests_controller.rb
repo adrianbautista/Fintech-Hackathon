@@ -15,7 +15,7 @@ class RequestsController < ApplicationController
     @request.votes.find_by_user_id(current_user.id).update_attributes(:value => true)
 
     ## look for math to see if majority rules, then place trade
-    if @vote.request.votes.where(value: true).count/@vote.request.club.members.count > .5
+    if @vote.request.votes.where(value: true).count/@vote.request.club.members.count > 0.5
       @vote.request.update_attributes(status: 'Ordered')
     end
 

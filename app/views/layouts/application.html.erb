@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/foundation.css">
 
-  	<title><%= content_for?(:title) ? yield(:title) : "Fund with Friends" %></title>
+  	<title><%= content_for?(:title) ? yield(:title) : "Social Fund" %></title>
 
   	<%= stylesheet_link_tag    "application" %>
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
@@ -35,23 +35,26 @@
           <ul class="title-area">
             <!-- Title Area -->
             <li class="name">
-              <h1><%= link_to "Fund with Friends", logo_helper %></h1>
+              <h1><%= link_to "SOCIAL FUND", logo_helper %></h1>
             </li>
             <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
           </ul>
           <section class="top-bar-section">
             <ul class="left">
               <!-- MENU -->
-              <li><%= link_to "Clubs", clubs_path %></li>
-              <% if !current_user %>
-                <li><%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %></li>
-              <% else %>
-                <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
-              <% end %>
               <!-- END MENU -->
             </ul>
             <ul class="right">
-
+              <% if !current_user %>
+                <li>
+                  <%= link_to user_omniauth_authorize_path(:facebook) do %>
+                    SIGN IN <i class="social foundicon-facebook"></i>
+                  <% end %>
+                </li>
+              <% else %>
+                <li><%= link_to "Clubs", clubs_path %></li>
+                <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+              <% end %>
               <li><%= right_helper %></li>
             </ul>
           </section>
@@ -75,13 +78,7 @@
         <hr>
         <div class="row">
           <div class="large-6 columns">
-            <p>&copy; Copyright no one at all. Go to town.</p>
-          </div>
-          <div class="large-6 columns">
-            <ul class="inline-list right">
-              <li><a href="#"></a></li>
-              <li><a href="#"></a></li>
-            </ul>
+            <h6><small>FINTECH HACKATHON 2013</small></h6>
           </div>
         </div>
       </div>
