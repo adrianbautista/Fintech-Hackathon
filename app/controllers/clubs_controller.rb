@@ -15,7 +15,6 @@ class ClubsController < ApplicationController
     @deposit.user_id = current_user.id
     @deposit.club_id = @club.id
     @deposit.date = Date.today
-  
     if @deposit.save
       redirect_to user_path(current_user), notice: "Club #{@club.name} created!"
     else

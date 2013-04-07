@@ -2,15 +2,20 @@
 
 <h3>Members</h3>
 <ul>
-<% @members.each do |m| %>
-  <li><%= m.name %> | % ownerships | total * % ownership</li>
-<% end %>
+  <% @members.each do |m| %>
+    <li><%= m.name %> | % ownerships | total * % ownership</li>
+  <% end %>
 </ul>
 
 <!-- add % ownership -->
 
 <div class='club_invested'>
   <h3>Total Invested Capital</h3>
+  <ul>
+    <% @deposits.each do |d| %>
+      <li><%= d.date %> | <%= d.user.name %> | <%= number_to_currency(d.amount) %></li>
+    <% end %>
+  </ul>
   <%= number_to_currency(@total_invested) %>
   <div>
     <%= form_tag do %>
