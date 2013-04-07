@@ -12,21 +12,77 @@
 
   	<!-- Set the viewport width to device width for mobile -->
   	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/foundation.css">
 
-  	<title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+  	<title><%= content_for?(:title) ? yield(:title) : "Social Fund" %></title>
 
   	<%= stylesheet_link_tag    "application" %>
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
+    <%= javascript_include_tag "application" %>
+    <script src="js/vendor/custom.modernizr.js"></script>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
-    <!-- from devise -->
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
 
-    
-    <%= javascript_include_tag "application" %>
+    <!-- from devise -->
+
+    <div class="row">
+      <div class="large-12 columns">
+        <!-- Navigation -->
+        <nav class="top-bar">
+          <ul class="title-area">
+            <!-- Title Area -->
+            <li class="name">
+              <h1><%= link_to "SOCIAL FUND", logo_helper %></h1>
+            </li>
+            <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+          </ul>
+          <section class="top-bar-section">
+            <ul class="left">
+              <!-- MENU -->
+              <!-- END MENU -->
+            </ul>
+            <ul class="right">
+              <% if !current_user %>
+                <li>
+                  <%= link_to user_omniauth_authorize_path(:facebook) do %>
+                    SIGN IN <i class="social foundicon-facebook"></i>
+                  <% end %>
+                </li>
+              <% else %>
+                <li><%= link_to "Clubs", clubs_path %></li>
+                <li><%= right_helper %></li>
+                <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+              <% end %>
+            </ul>
+          </section>
+      </nav>
+        <!-- End Navigation -->
+        </div>
+      </div>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+        <%= yield %>
+
+      </div>
+    </div>
+
+    <!-- Begin Footer -->
+    <footer class="row">
+      <div class="large-12 columns">
+        <hr>
+        <div class="row">
+          <div class="large-6 columns">
+            <h6><small>FINTECH HACKATHON 2013</small></h6>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- END FOOTER -->
   </body>
 </html>

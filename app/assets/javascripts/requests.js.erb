@@ -1,0 +1,17 @@
+$(function() {
+
+  $('#search_equity').click(findEquity);
+
+});
+
+function findEquity() {
+  $('#ticker_symbol').empty();
+  $('#last_price').empty();
+  var symbol = $('#ticker_symbol').val();
+  var url = "http://dev.markitondemand.com/Api/Quote/jsonp?symbol=";
+  $.getJSON( url + symbol +"&callback=?", function (data) {
+    console.log(data);
+    $('#stock_name').html(data["Data"]["Name"]);
+    $('#last_price').html("$" + data["Data"]["LastPrice"]);
+  });
+}

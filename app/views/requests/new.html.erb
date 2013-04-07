@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="large-12 columns">
+    <h2>NEW REQUEST</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-6 columns">
+    <div class="row collapse">
+      <div class="small-10 columns">
+        <%= text_field_tag :ticker_symbol, nil, placeholder: "Enter Ticker Symbol" %>
+      </div>
+      <div class="small-2 columns">
+        <%= button_tag 'Search Equity', id: 'search_equity', class: 'button prefix' %>
+      </div>
+    </div>
+  </div>
+  <div class="large-6 columns" id="search_result">
+    <h3><span id="stock_name"></span>&nbsp;<span id="last_price"></span></h3>
+  </div>
+</div>
+
+<%= form_for @request do |f| %>
+  <fieldset>
+    <legend>Trade Request Details</legend>
+    <div class="row">
+      <div class="large-2 columns">
+        <%= f.label :symbol %>
+        <%= f.text_field :symbol %>
+      </div>
+      <div class="large-2 columns">
+        <%= f.label :quantity %>
+        <%= f.number_field :quantity %>
+      </div>
+      <div class="large-4 columns">
+        <%= f.label :price %>
+        <div class="row collapse">
+          <div class="small-2 columns">
+            <span class="prefix">USD$</span>
+          </div>
+          <div class="small-10 columns">
+            <%= f.number_field :price %>
+          </div>
+        </div>
+      </div>
+      <div class="large-4 columns">
+        <%= f.label :deadline %>
+        <div class="row collapse">
+          <%= f.date_select :date, {}, {class: 'small-4 columns'} %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <%= f.label :message %>
+        <%= f.text_area :message %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-4 columns">
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.hidden_field :club_id, value: @club_id %>
+        <%= f.submit 'submit request', class: 'button'  %>
+      </div>
+    </div>
+  </fieldset>
+<% end %>
+
+
+
+
+
+
