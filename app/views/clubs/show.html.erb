@@ -1,3 +1,18 @@
+<h2>Club Name: <%= @club.name %></h2>
+<h4>Performance: <%= @performance.to_i %>%</h4>
+
+<div class='club_invested'>
+  <h3>Members</h3>
+  <strong><span class='tre'>Name</span><span class='tre'>Percentage</span><span class='tre money'>Value</span></strong>
+  <ul>
+    <% @members.each do |m| %>
+      <li><span class='tre'><%= m.name %></span><span class='tre'><%= number_to_percentage(m.ownership(@club), :precision => 1) %></span><span class='tre money'><%= number_to_currency(m.total_deposits(@club)) %></span></li>
+    <% end %>
+  </ul>
+</div>
+<div class='club_requests'>
+  <h3>Make a Request</h3>
+  <%= link_to 'Request', new_request_path, class: "small button", id: "graph_it"  %>
 <div class="row">
   <div class="large-12 columns">
     <h2><%= @club.name.upcase %></h2>    
@@ -143,19 +158,8 @@
 </div>
 <div class='clearfix'></div>
 <h3>Performance</h3>
-<<<<<<< HEAD
 
 charts here
-=======
 <%= @big_graph %>
 
 <div id="area-example"></div>
-
->>>>>>> d154170a80aa8959ca9036c0cf213ad9c7c3c45d
-
-<%= @big_graph %>
-
-<<<<<<< HEAD
-=======
-</script>
->>>>>>> d154170a80aa8959ca9036c0cf213ad9c7c3c45d

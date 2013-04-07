@@ -56,6 +56,23 @@ class ClubsController < ApplicationController
       @holdings << holding
     end
 
+    @portfolio_list = []
+    @portfolio_wo_USD1 = @club.portfolio
+    @portfolio_wo_USD1.delete('USD')
+    @portfolio_wo_USD1.each do |ticker|
+      @portfolio_list << YahooFinance::get_quotes(YahooFinance::StandardQuote, ticker)[ticker].lastTrade
+    end
+    @begin = Transaction.where(club_id: @club.id).map(&:price)
+
+    @percent = []
+    count = 0
+    @portfolio_list.each do |ending|
+      start = @begin[count]
+      @percent << ( (ending / start) - 1 )
+      count += 1
+    end
+    @performance = (@percent.inject(0.0) { |sum, el| sum + el } / @percent.size) * 100
+
 
     # @pie=[@holdings]
     # @holdings.each do |h|
