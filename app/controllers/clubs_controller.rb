@@ -57,7 +57,7 @@ class ClubsController < ApplicationController
       end
     end
     # FIX THIS SHITS!!!
-    @requests = @club.requests.where(: nil)
+    # @requests = @club.requests.where(: nil)
   end
 
 end
