@@ -108,7 +108,6 @@ class ClubsController < ApplicationController
     # @members = @club.members
 
     @votes = @club.votes.where(:club_id => @club.id).where(:value => nil).where(:user_id => current_user.id)
-
     # @graph_hash = {}
     # @portfolio_wo_USD = @club.portfolio
     # @portfolio_wo_USD.delete('USD')

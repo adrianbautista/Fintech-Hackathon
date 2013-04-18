@@ -8,7 +8,7 @@ class RequestsController < ApplicationController
   def create
     @request = Request.create(params[:request])
     Club.find(@request.club_id).members.each do |user|
-      Vote.create(request_id: @request.id, user_id: user.id, club_id: @request.club_id)
+      vote = Vote.create(request_id: @request.id, user_id: user.id, club_id: @request.club_id)
     end
     # Vote.find(request_id)
 

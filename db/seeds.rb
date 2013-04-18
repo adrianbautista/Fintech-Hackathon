@@ -18,7 +18,7 @@ deposit2 = Deposit.create(user_id: user2.id, club_id: club1.id, amount: 10000, d
 deposit3 = Deposit.create(user_id: user3.id, club_id: club1.id, amount: 10000, date: Date.new(2012,1,20))
 
 deposit4 = Deposit.create(user_id: user1.id, club_id: club2.id, amount: 10000, date: Date.new(2012,1,4))
-deposit5 = Deposit.create(user_id: user4.id, club_id: club2.id, amount: 10000, date: Date.new(2012,1,9))
+deposit5 = Deposit.create(user_id: user3.id, club_id: club2.id, amount: 10000, date: Date.new(2012,1,9))
 
 Transaction.create(club_id: club1.id, symbol: 'GOOG', price: 585.52, quantity: 10, date: Date.new(2012,1,23))
 Transaction.create(club_id: club1.id, symbol: 'AAPL', price: 427.41, quantity: 20, date: Date.new(2012,1,23))
